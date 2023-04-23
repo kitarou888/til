@@ -1,5 +1,6 @@
 "use strict";
-let person1 = 'mary';
-let person2 = 'mary';
-let person3;
-person1 = 'aaaa';
+function leftover(array) {
+    return array.slice(1, array.length);
+}
+const numArray = [10, 20, 30, 40];
+const resultArr1 = leftover(numArray);
