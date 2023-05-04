@@ -3,9 +3,19 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fix": "prettier --write . && eslint --fix .",
+    "lint": "prettier --check . && eslint ."
   },
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1"
+  },
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.7",
+    "minimist": "^1.2.8"
+  }
 }
