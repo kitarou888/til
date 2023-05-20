@@ -9,7 +9,8 @@ class Gate
   end
 
   def exit(ticket)
-    gates = [:umeda, :juso, :mikuni]
+    STATIONS = [:umeda, :juso, :mikuni]
+    FARES = [160, 190]
     departure = ticket.stamp_at
     distance = (gates.index(self.name) - gates.index(ticket.departure)).abs
     
