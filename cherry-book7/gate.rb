@@ -1,5 +1,9 @@
 class Gate
   attr_accessor :name
+
+  STATIONS = [:umeda, :juso, :mikuni]
+  FARES = [160, 190]
+
   def initialize(name)
     @name = name
   end
@@ -9,14 +13,10 @@ class Gate
   end
 
   def exit(ticket)
-    STATIONS = [:umeda, :juso, :mikuni]
-    FARES = [160, 190]
     departure = ticket.stamp_at
-    distance = (gates.index(self.name) - gates.index(ticket.departure)).abs
+    distance = (STATIONS.index(self.name) - STATIONS.index(ticket.departure)).abs
     
-    if ticket.price >= 160 && distance == 1
-      true
-    elsif ticket.price >= 190 && distance == 2
+    if FARES.index(ticket.price) >= distance - 1
       true
     else
       false
