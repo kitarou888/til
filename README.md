@@ -8,3 +8,6 @@
 5/27(土) React ToDo アプリ（LocalStorage）、りあクト輪読会、動画キャプチャ
 5/28(日) React ToDo アプリ（CSS→ 提出）、メモアプリ（構成整え前アプリ再現まで）
 5/29(月) React メモアプリ（CRUD 機能、配置）
+5/30(火) React メモアプリ（CSS、提出）
+5/31(水) React Hooks、チェリー本（Suica 実装）
+6/1(木) チェリー本（Suica 実装）、JSPrimer（イベントループなど）
