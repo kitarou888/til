@@ -11,3 +11,5 @@
 5/30(火) React メモアプリ（CSS、提出）
 5/31(水) React Hooks、チェリー本（Suica 実装）
 6/1(木) チェリー本（Suica 実装）、JSPrimer（イベントループなど）
+6/2(金) React Hooks、JSPrimer（非同期の順序、Promise）
+6/3(土) React Hooks、
