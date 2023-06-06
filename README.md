@@ -15,3 +15,4 @@
 6/3(土) React Hooks（写経）
 6/4(日) React ToDo アプリ修正
 6/5(月) React ToDo アプリ修正、チェリー本（Suica 実装）
+6/6(火) React ToDo アプリ修正（副作用を map の中に書かない）
