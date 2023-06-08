@@ -16,4 +16,5 @@
 6/4(日) React ToDo アプリ修正
 6/5(月) React ToDo アプリ修正、チェリー本（Suica 実装）
 6/6(火) React ToDo アプリ修正（副作用を map の外に）
-6/7(水) React ToDo アプリ修正（useEffect）
+6/7(水) React ToDo アプリ修正再提出（useEffect）、メモアプリ修正再提出
+6/8(木) React メモアプリ修正（Array.some()）
