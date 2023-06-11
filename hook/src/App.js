@@ -1,8 +1,8 @@
 import "./App.css";
-import Example from "./Example.js";
+import Timer from "./Timer.js";
 
-function App() {
-  return <Example></Example>;
-}
+const App = () => {
+  return <Timer />;
+};
 
 export default App;
