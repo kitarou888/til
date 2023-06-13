@@ -1,4 +1,5 @@
 import TaskCard from "./TaskCard";
+import TaskForm from "./TaskForm";
 
 const TaskList = (props) => {
   const handleTitleClick = () => {
@@ -15,6 +16,7 @@ const TaskList = (props) => {
       ) : (
         <div>カードなし</div>
       )}
+      <TaskForm />
     </div>
   );
 };
