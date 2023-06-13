@@ -1,4 +1,5 @@
 import "./App.css";
+import TaskBoard from "./TaskBoard";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
 
 const cards = [
   { id: 1, body: "お茶を買う", category: "今日やること" },
-  { id: 2, body: "牛乳を買う", category: "今日やること" },
+  // { id: 2, body: "牛乳を買う", category: "今日やること" },
   { id: 3, body: "あんぱんを買う", category: "今日やること" },
 ];
 
