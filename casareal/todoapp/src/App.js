@@ -1,12 +1,49 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import TaskBoard from "./TaskBoard";
 
-function App() {
-  const [cards, setCards] = useState(initialData);
+const App = () => {
+  const [cards, setCards] = useState(null);
+
+  useEffect(() => {
+    const fetchCards = async () => {
+      try {
+        const response = await fetch("http://localhost:8080/cards");
+        if (!response.ok)
+          throw new Error(`${response.status} ${response.statusText}`);
+        const data = await response.json();
+        setCards(data);
+      } catch (error) {
+        console.error(error);
+        window.alert(error);
+      }
+    };
+    fetchCards();
+  }, []);
+
+  const postNewCard = async (newCard) => {
+    const fetchOptions = {
+      method: "POST",
+      body: JSON.stringify(newCard),
+      header: { "Content-Type": "application/json" },
+    };
+    try {
+      const response = await window.fetch(
+        "http://localhost:8080/cards",
+        fetchOptions
+      );
+      if (!response.ok)
+        throw new Error(`${response.status} ${response.statusText}`);
+      window.alert(`タスクカード：${newCard.body}を登録しました`);
+    } catch (error) {
+      console.error(error);
+      window.alert(error);
+    }
+  };
 
   const addCard = (newCard) => {
     newCard.id = cards.length + 1;
+    postNewCard(newCard);
     setCards([...cards, newCard]);
   };
 
@@ -18,15 +55,9 @@ function App() {
     <div>
       <h1>TASK LIST</h1>
       <button onClick={handleClick}>データ追加</button>
-      <TaskBoard cards={cards} />
+      {cards ? <TaskBoard cards={cards} /> : "読み込み中"}
     </div>
   );
-}
-
-const initialData = [
-  { id: 1, body: "お茶を買う", category: "今日やること" },
-  // { id: 2, body: "牛乳を買う", category: "今日やること" },
-  { id: 3, body: "あんぱんを買う", category: "今日やること" },
-];
+};
 
 export default App;
