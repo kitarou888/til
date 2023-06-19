@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-const TaskForm = () => {
+const TaskForm = (props) => {
   const [text, setText] = useState("");
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const TaskForm = () => {
   };
 
   const handleAddCard = () => {
-    alert(text);
+    props.addCard({ id: null, body: text, category: "今日やること" });
   };
 
   return (

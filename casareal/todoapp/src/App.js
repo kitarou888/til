@@ -55,7 +55,7 @@ const App = () => {
     <div>
       <h1>TASK LIST</h1>
       <button onClick={handleClick}>データ追加</button>
-      {cards ? <TaskBoard cards={cards} /> : "読み込み中"}
+      {cards ? <TaskBoard cards={cards} addCard={addCard} /> : "読み込み中"}
     </div>
   );
 };

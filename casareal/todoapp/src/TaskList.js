@@ -16,7 +16,7 @@ const TaskList = (props) => {
       ) : (
         <div>カードなし</div>
       )}
-      <TaskForm />
+      <TaskForm addCard={props.addCard} />
     </div>
   );
 };
