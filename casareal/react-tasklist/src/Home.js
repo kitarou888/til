@@ -1,31 +1,30 @@
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Divider from '@mui/material/Divider';
-import Icon from '@mui/material/Icon';
-import { styled } from '@mui/system';
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import Divider from "@mui/material/Divider";
+import Icon from "@mui/material/Icon";
+import { styled } from "@mui/system";
 // TODO
+import { useNavigate } from "react-router-dom";
 
-const StyledBase = styled('div')({
-  height: '100vh',
-  padding: '20px',
-  backgroundColor: '#ccc',
+const StyledBase = styled("div")({
+  height: "100vh",
+  padding: "20px",
+  backgroundColor: "#ccc",
 });
-const StyledListRoot = styled('div')({
-  width: '100%',
+const StyledListRoot = styled("div")({
+  width: "100%",
   maxWidth: 360,
-  backgroundColor: 'white',
-  boxShadow: '5px 5px rgba(0,0,0,0.5)',
+  backgroundColor: "white",
+  boxShadow: "5px 5px rgba(0,0,0,0.5)",
 });
 
 const Home = () => {
-
   // TODO
-
+  const Navigate = useNavigate();
   const handleClick = (event) => {
-    // TODO
-
+    Navigate("/login");
   };
 
   return (
