@@ -28,5 +28,6 @@
 6/18(日) 自作サービス（Getting Real）
 6/19(月) 自作サービス（エレベータピッチ）、MUI
 6/20(火) 残業対応（同じ SQL で異なる結果が返ってくる問題）、ペーパープロトタイプ作成
-6/21(水) ペーパープロトタイプ提出、React Router
-6/22(木) React Router、JSPrimer 輪読会
+6/21(水) ペーパープロトタイプ提出、.gitignore 設定
+6/22(木) カサレアル（React Router）、JSPrimer 輪読会
+6/23(金) カサレアル（Context API）、JSPrimer 輪読会
