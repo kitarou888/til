@@ -1,13 +1,15 @@
-import { useContext } from 'react';
-import { GreetingMessage } from './App';
+import { useContext } from "react";
+import { GreetingMessage } from "./App";
 
 const Third = () => {
-  // TODO:供給されているコンテキストを受け取る
-  const greeting = null;
+  const [greeting, setGreeting] = useContext(GreetingMessage);
+  // // TODO:供給されているコンテキストを受け取る
+  // const greeting = useContext(GreetingMessage);
 
   const handleRadio = (event) => {
     console.log(event.target.value);
-    // （その２での）TODO：ここは後で書きます
+    // 状態変数用の関数を使って実際に値を変更
+    setGreeting({ message: event.target.value });
   };
 
   return (
@@ -21,7 +23,12 @@ const Third = () => {
         </label>
         <label>
           いいえ
-          <input type="radio" name="res" onChange={handleRadio} value="いいえ"/>
+          <input
+            type="radio"
+            name="res"
+            onChange={handleRadio}
+            value="いいえ"
+          />
         </label>
       </div>
     </div>

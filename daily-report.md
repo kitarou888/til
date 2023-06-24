@@ -31,3 +31,4 @@
 6/21(水) ペーパープロトタイプ提出、.gitignore 設定
 6/22(木) カサレアル（React Router）、JSPrimer 輪読会
 6/23(金) カサレアル（Context API）、JSPrimer 輪読会
+6/24(土) Embedings 学習

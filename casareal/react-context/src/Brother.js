@@ -1,11 +1,11 @@
-import { useContext } from 'react';
-import { GreetingMessage } from './App';
+import { useContext } from "react";
+import { GreetingMessage } from "./App";
 
 const Brother = () => {
-  
-  // TODO:供給されているコンテキストを受け取る
-  const greeting = null;
-  
+  const [greeting, setGreeting] = useContext(GreetingMessage);
+  // // TODO:供給されているコンテキストを受け取る
+  // const greeting = useContext(GreetingMessage);
+
   return (
     <div>
       {/* コンポーネント間で共有するデータをここで表示する */}
