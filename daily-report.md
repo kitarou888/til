@@ -52,3 +52,4 @@
 7/12(水) 読書のみ（Vue 外部研修 1 日目）
 7/13(木) Vue ToDo アプリ（編集機能まで完成）
 7/14(金) Vue ToDo アプリ（LocalStorage 接続 → 提出）、JSPrimer 輪読会
+7/15(土) Vue メモアプリ（create-vue、コンポーネント雛形作成）、ブルーベリー本輪読会、let+for 文はるぐちさん
