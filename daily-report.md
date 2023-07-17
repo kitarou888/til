@@ -54,3 +54,4 @@
 7/14(金) Vue ToDo アプリ（LocalStorage 接続 → 提出）、JSPrimer 輪読会
 7/15(土) Vue メモアプリ（create-vue、コンポーネント雛形作成）、ブルーベリー本輪読会、let+for 文はるぐちさん
 7/16(日) 非同期処理（コールバック完成）
+7/17(月) 非同期処理（Promise）
