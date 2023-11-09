@@ -168,3 +168,4 @@
 11/5(日) 技術記事(async/await,関数プログラミングと型システム)、UNIX という考え方 P.135〜読了
 11/6(月) JScli メモアプリ、会社説明会ミートアップ、SoftwareDesign「名前付け大全」2 章〜
 11/7(火) JScli メモアプリ、ブルーベリー本輪読会、SoftwareDesign「名前付け大全」2 章〜
+11/8(水) JScli メモアプリ再プッシュ、現場 Rails 輪読会、SoftwareDesign「名前付け大全」2 章〜
