@@ -180,4 +180,5 @@
 11/17(金) 現場 Rails 輪読会（トラブルシューティング対応）、JScli メモアプリ修正、達人プログラマー読み始め
 11/18(土) オブジェクト指向設計実践ガイド輪読会 P.109-P.119、JScli メモアプリ修正、自作 npm(axios データ取得)
 11/19(日) JScli メモアプリ修正、ブログ執筆
-11/20(月) JScli メモアプリ修正再提出（コンストラクタ中で CREATE TABLE）、SoftwareDesign12 月号特集
+11/20(月) JScli メモアプリ修正再提出（コンストラクタ中で CREATE TABLE）、SoftwareDesign12 月号 CI/CD 特集
+11/21(火) 自作 npm(オブジェクト加工検討)、ブルーベリー本輪読会 3.2.3〜、SoftwareDesign12 月号 CI/CD 特集
