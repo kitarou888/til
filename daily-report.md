@@ -182,3 +182,4 @@
 11/19(日) JScli メモアプリ修正、ブログ執筆
 11/20(月) JScli メモアプリ修正再提出（コンストラクタ中で CREATE TABLE）、SoftwareDesign12 月号 CI/CD 特集
 11/21(火) 自作 npm(オブジェクト加工検討)、ブルーベリー本輪読会 3.2.3〜、SoftwareDesign12 月号 CI/CD 特集
+11/22(水) 現場 Rails 輪読会、SRE（はじめに）
