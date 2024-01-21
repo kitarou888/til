@@ -10,10 +10,7 @@ Rails.application.routes.draw do
 
   resources :tasks
   root to: 'tasks#index'
-  # controller :tasks do
-  #   resources :tasks, only: [:index, :show]
-  #   scope path: 's' do
-  #     get 'task_contest', action: :edit
-  #   end
-  # end
+  resources :tasks do
+    post :confirm, action: :confirm_new, on: :new
+  end
 end
