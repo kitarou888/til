@@ -9,7 +9,12 @@ class Task < ApplicationRecord
   scope :recent, -> { order(created_at: :desc) }
 
   def self.ransackable_attributes(auth_object = nil)
-    ["created_at", "description", "id", "name", "updated_at", "user_id"]
+    # ["created_at", "description", "id", "name", "updated_at", "user_id"]
+    ["created_at",  "name"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    []
   end
 
   private
