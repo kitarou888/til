@@ -6,6 +6,11 @@ class TasksController < ApplicationController
     # @tasks = current_user.tasks.order(created_at: :desc)
     @q = current_user.tasks.ransack(params[:q])
     @tasks = @q.result(distinct: true)
+
+    respond_to do |format|
+      format.html
+      format.csv { send_data @tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%dS')}.csv" }
+    end
   end
 
   def show
@@ -63,6 +68,11 @@ class TasksController < ApplicationController
     # end
     p "test"
     # render :confirm_new
+  end
+
+  def import
+    current_user.tasks.import(params[:file])
+    redirect_to tasks_url, notice: "タスクを追加しました"
   end
 
   private
