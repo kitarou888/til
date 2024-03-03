@@ -1,4 +1,5 @@
-require 'test/unit'
+# require 'test/unit'
+require 'minitest/autorun'
 
 class Wheel
   attr_reader :rim, :tire
@@ -7,17 +8,18 @@ class Wheel
     @tire = tire
   end
 
-  def width
+  def diameter
     rim + (tire * 2)
   end
 end
 
 class Gear
-  attr_reader :chainring, :cog, :wheel
+  attr_reader :chainring, :cog, :wheel, :observer
   def initialize(args)
     @chainring = args[:chainring]
     @cog = args[:cog]
     @wheel = args[:wheel]
+    @observer = args[:observer]
   end
 
   def gear_inches
@@ -28,6 +30,20 @@ class Gear
   def ratio
     chainring / cog.to_f
   end
+
+  def set_cog(new_cog)
+    @cog = new_cog
+    changed
+  end
+
+  def set_chainring(new_chainring)
+    @chainring = new_chainring
+    changed
+  end
+
+  def changed
+    observer.changed(chainring, cog)
+  end
 end
 
 class Diameterizable # diameterロールの担い手をつくる
@@ -36,7 +52,7 @@ class Diameterizable # diameterロールの担い手をつくる
   end
 end
 
-class  WheelTest < Test::Unit::TestCase
+class  WheelTest < Minitest::Test
   def setup
     @wheel = Wheel.new(26, 1.5)
   end
@@ -52,13 +68,25 @@ class  WheelTest < Test::Unit::TestCase
   end
 end
 
-class GearTest < Test::Unit::TestCase
-  def test_calculates_gear_inches
-    gear = Gear.new(
+class GearTest < Minitest::Test
+  def setup
+    @observer = Minitest::Mock.new
+    @gear = Gear.new(
       chainring: 52,
       cog:       11,
-      wheel:     Diameterizable.new
+      observer:  @observer
     )
-    assert_in_delta(47.27, gear.gear_inches, 0.01)
+  end
+
+  def test_notifies_observers_when_cogs_change
+    @observer.expect(:changed, true, [52, 27])
+    @gear.set_cog(27)
+    @observer.verify
+  end
+
+  def test_notifies_observers_when_chainrings_change
+    @observer.expect(:changed, true, [42, 11])
+    @gear.set_chainring(42)
+    @observer.verify
   end
 end
