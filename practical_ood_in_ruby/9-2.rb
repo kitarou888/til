@@ -7,7 +7,7 @@ class Wheel
     @tire = tire
   end
 
-  def diameter
+  def width # 以前はdiameterだった！
     rim + (tire * 2)
   end
 end
@@ -22,7 +22,7 @@ class Gear
 
   def gear_inches
     # wheel 変数内のオブジェクトがDiameterizableロールを担う
-    ratio * wheel.diameter
+    ratio * wheel.diameter # <--古くなっている！
   end
 
   def ratio
