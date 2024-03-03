@@ -7,7 +7,7 @@ class Wheel
     @tire = tire
   end
 
-  def width # 以前はdiameterだった！
+  def diameter
     rim + (tire * 2)
   end
 end
@@ -30,6 +30,12 @@ class Gear
   end
 end
 
+class Diameterizable # diameterロールの担い手をつくる
+  def diameter
+    10
+  end
+end
+
 class  WheelTest < Test::Unit::TestCase
   def test_calculates_diameter
     wheel = Wheel.new(26, 1.5)
@@ -43,8 +49,8 @@ class GearTest < Test::Unit::TestCase
     gear = Gear.new(
       chainring: 52,
       cog:       11,
-      wheel:     Wheel.new(26, 1.5)
+      wheel:     Diameterizable.new
     )
-    assert_in_delta(137.1, gear.gear_inches,0.01)
+    assert_in_delta(47.27, gear.gear_inches, 0.01)
   end
 end
