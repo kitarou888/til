@@ -39,8 +39,8 @@ end
 class Trip
   attr_reader :bicycles, :customers, :vehicle
 
-  def prepare(prepares)
-    prepares.each {|preparer|
+  def prepare(preparers)
+    preparers.each {|preparer|
       preparer.prepare_trip(self)
     }
   end
@@ -78,3 +78,13 @@ class DriverTest < Minitest::Test
   end
 end
 
+class TripTest < Minitest::Test
+  def test_requests_trip_preparation
+    @preparer = Minitest::Mock.new
+    @trip = Trip.new
+    @preparer.expect(:prepare_trip, nil, [@trip])
+
+    @trip.prepare([@preparer])
+    @preparer.verify
+  end
+end
