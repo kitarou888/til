@@ -8,7 +8,7 @@ class Wheel
     @tire = tire
   end
 
-  def diameter
+  def width
     rim + (tire * 2)
   end
 end
@@ -46,7 +46,7 @@ class Gear
   end
 end
 
-class Diameterizable # diameterロールの担い手をつくる
+class DiameterDouble # diameterロールの担い手をつくる
   def diameter
     10
   end
@@ -88,5 +88,15 @@ class GearTest < Minitest::Test
     @observer.expect(:changed, true, [42, 11])
     @gear.set_chainring(42)
     @observer.verify
+  end
+
+  def test_calculates_gear_inches
+    gear = Gear.new(
+      chainring: 52,
+      cog: 11,
+      wheel: DiameterDouble.new
+    )
+
+    assert_in_delta(47.27, gear.gear_inches, 0.01)
   end
 end
