@@ -52,13 +52,17 @@ class DiameterDouble # diameterロールの担い手をつくる
   end
 end
 
-class  WheelTest < Minitest::Test
-  def setup
-    @wheel = Wheel.new(26, 1.5)
-  end
-
+module DiameterizableInterfaceTest
   def test_implements_the_diameterizable_interface
     assert_respond_to(@wheel, :width)
+  end
+end
+
+class  WheelTest < Minitest::Test
+  include DiameterizableInterfaceTest
+
+  def setup
+    @wheel = @object = Wheel.new(26, 1.5)
   end
 
   def test_calculates_diameter
