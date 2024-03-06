@@ -58,6 +58,14 @@ module DiameterizableInterfaceTest
   end
 end
 
+class DiameterDoubleTest < Minitest::Test
+  include DiameterizableInterfaceTest
+
+  def setup
+    @object = DiameterDouble.new
+  end
+end
+
 class  WheelTest < Minitest::Test
   include DiameterizableInterfaceTest
 
