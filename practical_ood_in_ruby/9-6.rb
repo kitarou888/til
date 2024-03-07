@@ -47,6 +47,8 @@ class RoadBike < Bicycle
   end
 end
 
+require 'minitest/autorun'
+
 module BicycleInterfaceTest
   def test_responds_to_default_tire_size
     assert_respond_to(@object, :default_tire_size)
@@ -70,5 +72,21 @@ module BicycleInterfaceTest
 
   def test_responds_to_spares
     assert_respond_to(@object, :spares)
+  end
+end
+
+class BicycleTest < Minitest::Test
+  include BicycleInterfaceTest
+
+  def setup
+    @bike = @object = Bicycle.new({ tire_size: 0 })
+  end
+end
+
+class RoadBikeTest < Minitest::Test
+  include BicycleInterfaceTest
+
+  def setup
+    @bike = @object = RoadBike.new
   end
 end
