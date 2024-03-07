@@ -47,6 +47,23 @@ class RoadBike < Bicycle
   end
 end
 
+class MountainBike < Bicycle
+  attr_reader :front_shock, :rear_shock
+
+  def post_initialize(args)
+    @front_shock = args[:front_shock]
+    @rear_shock = args[:rear_shock]
+  end
+
+  def local_spares
+    { rear_shock: rear_shock }
+  end
+
+  def default_tire_size
+    '2.1'
+  end
+end
+
 require 'minitest/autorun'
 
 module BicycleInterfaceTest
@@ -83,10 +100,34 @@ class BicycleTest < Minitest::Test
   end
 end
 
+module BicycleSubclassTest
+  def test_responds_to_post_initialize
+    assert_respond_to(@object, :post_initialize)
+  end
+
+  def test_responds_to_local_spares
+    assert_respond_to(@object, :local_spares)
+  end
+
+  def test_responds_to_default_tire_size
+    assert_respond_to(@object, :default_tire_size)
+  end
+end
+
 class RoadBikeTest < Minitest::Test
   include BicycleInterfaceTest
+  include BicycleSubclassTest
 
   def setup
     @bike = @object = RoadBike.new
+  end
+end
+
+class MountainBikeTest < Minitest::Test
+  include BicycleInterfaceTest
+  include BicycleSubclassTest
+
+  def setup
+    @bike = @object = MountainBike.new
   end
 end
