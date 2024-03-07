@@ -24,7 +24,7 @@ class Gear
 
   def gear_inches
     # wheel 変数内のオブジェクトがDiameterizableロールを担う
-    ratio * wheel.diameter # <--古くなっている！
+    ratio * wheel.width # <-- diameterからwidthに修正
   end
 
   def ratio
@@ -47,7 +47,7 @@ class Gear
 end
 
 class DiameterDouble # diameterロールの担い手をつくる
-  def diameter
+  def width # widthに修正
     10
   end
 end
@@ -62,7 +62,7 @@ class DiameterDoubleTest < Minitest::Test
   include DiameterizableInterfaceTest
 
   def setup
-    @object = DiameterDouble.new
+    @wheel = @object = DiameterDouble.new
   end
 end
 
