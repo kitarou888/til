@@ -157,3 +157,11 @@ class MountainBikeTest < Minitest::Test
     @bike = @object = MountainBike.new
   end
 end
+
+class StubbedBikeTest < Minitest::Test
+  include BicycleSubclassTest
+
+  def setup
+    @object = StubbedBike.new
+  end
+end
