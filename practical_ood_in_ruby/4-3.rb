@@ -8,7 +8,14 @@ class Customer
 end
 
 class Trip
-  def suitable_trips(on_date, of_difficulty, need_bike)
+  def suitable_trips(on_date, of_difficulty)
+    ["tripA", "tripB"]
+  end
+end
+
+class Bicycle
+  def suitable_bicycle(trip_date, route_type)
+    ["bikeA", "bikeB"]
   end
 end
 
