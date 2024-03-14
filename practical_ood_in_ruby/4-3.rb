@@ -7,6 +7,21 @@ class Customer
   end
 end
 
+class TripFinder
+  def initialize(trip, bike)
+    @trip = trip
+    @bike = bike
+  end
+
+  def suitable_trips(on_date, of_difficulty, need_bike)
+    trips = trip.suitable_trips(on_date, of_difficulty)
+
+    trips.each do |trip|
+      bike.suitable_bicycle(trip_date, route_type)
+    end
+  end
+end
+
 class Trip
   def initialize(mechanic)
     @mechanic = mechanic
