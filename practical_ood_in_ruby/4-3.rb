@@ -20,10 +20,8 @@ class Trip
     ["bikeA", "bikeB", "bikeC"]
   end
 
-  def prepare_trip
-    bicycles.each do |bicycle|
-      mechanic.prepare_bicycle(bike)
-    end
+  def prepare_trip(self)
+
   end
 end
 
@@ -34,11 +32,13 @@ class Bicycle
 end
 
 class Mechanic
-  def prepare_bicycle(bike)
-    clean_bicycle(bike)
-    pump_tires(bike)
-    lube_chain(bike)
-    check_brakes(bike)
+  def prepare_bicycle(trip)
+    trip.bicycles.each do |bike|
+      clean_bicycle(bike)
+      pump_tires(bike)
+      lube_chain(bike)
+      check_brakes(bike)
+    end
   end
 
   def clean_bicycle(bike)
