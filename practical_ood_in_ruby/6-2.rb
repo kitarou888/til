@@ -1,16 +1,17 @@
 class Bicycle
-  # このクラスはもはや空となり、コードはすべてRoadBikeに移された
+  attr_reader :size # RoadBikeから昇格
+
+  def initialize(args={})
+    @size = args[:size] # Roadbikeから昇格
+  end
 end
 
 class RoadBike < Bicycle
-  attr_reader :style, :size, :tape_color, :front_shock, :rear_shock
+  attr_reader :tape_color
 
   def initialize(args)
-    @style = args[:style]
-    @size = args[:size]
     @tape_color = args[:tape_color]
-    @front_shock = args[:front_shock]
-    @rear_shock = args[:rear_shock]
+    super(args) # RoadBikeはsuperを必ず呼ばなければならなくなった
   end
 
   # styleの確認は危険な道へ進む一歩
@@ -44,9 +45,9 @@ end
 road_bike = RoadBike.new(size: 'M', tape_color: 'red')
 p road_bike.size
 
-# mountain_bike = MountainBike.new(size: 'S', front_shock: 'Manitou', rear_shock: 'Fox')
-# p mountain_bike.size
-# p mountain_bike.spares
+mountain_bike = MountainBike.new(size: 'S', front_shock: 'Manitou', rear_shock: 'Fox')
+p mountain_bike.size
+p mountain_bike.spares
 # -> { :tire_size => "2.1",
 #      :chain => "10-speed",
 #      :rear_shock => "Fox" }
