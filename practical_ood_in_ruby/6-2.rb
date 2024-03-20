@@ -37,18 +37,15 @@ class MountainBike < Bicycle
   end
 end
 
-bike1 = Bicycle.new(
+bike = Bicycle.new(
   style: :road,
   size: "M",
   tape_color: "red"
 )
-bike2 = Bicycle.new(
-  style: :mountain,
-  size: "S",
-  front_shock: "Manitou",
-  rear_shock: "Fox"
-)
-bike2.spares
+
+mountain_bike = MountainBike.new(size: 'S', front_shock: 'Manitou', rear_shock: 'Fox')
+p mountain_bike.size
+p mountain_bike.spares
 # -> { :tire_size => "2.1",
 #      :chain => "10-speed",
 #      :rear_shock => "Fox" }
