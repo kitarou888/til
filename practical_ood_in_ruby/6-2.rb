@@ -1,4 +1,8 @@
 class Bicycle
+  # このクラスはもはや空となり、コードはすべてRoadBikeに移された
+end
+
+class RoadBike < Bicycle
   attr_reader :style, :size, :tape_color, :front_shock, :rear_shock
 
   def initialize(args)
