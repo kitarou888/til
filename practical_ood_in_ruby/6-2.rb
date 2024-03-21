@@ -10,6 +10,10 @@ class Bicycle
   def default_chain # <- 共通の初期値
     '10-speed'
   end
+
+  def default_tire_size
+    raise NotImplementError
+  end
 end
 
 class RoadBike < Bicycle
