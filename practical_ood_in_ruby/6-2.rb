@@ -3,8 +3,12 @@ class Bicycle
 
   def initialize(args={})
     @size = args[:size]
-    @chain = args[:chain]
-    @tire_size = args[:tire_size]
+    @chain = args[:chain] || default_chain
+    @tire_size = args[:tire_size] || default_tire_size
+  end
+
+  def default_chain # <- 共通の初期値
+    '10-speed'
   end
 end
 
@@ -16,11 +20,12 @@ class RoadBike < Bicycle
     super(args) # RoadBikeはsuperを必ず呼ばなければならなくなった
   end
 
-  # styleの確認は危険な道へ進む一歩
   def spares
-    { chain: "10-speed",
-      tire_size: "23",
-      tape_color: tape_color }
+    { tape_color: tape_color }
+  end
+
+  def default_tire_size # <- サブクラスの初期値
+    '23'
   end
 end
 
@@ -36,15 +41,20 @@ class MountainBike < Bicycle
   def spares
     super.merge(rear_shock: rear_shock)
   end
+
+  def default_tire_size # <- サブクラスの初期値
+    '2.1'
+  end
 end
 
 road_bike = RoadBike.new(size: 'M', tape_color: 'red')
 p road_bike.size
 p road_bike.spares
+p road_bike.tire_size
+p road_bike.chain
 
 mountain_bike = MountainBike.new(size: 'S', front_shock: 'Manitou', rear_shock: 'Fox')
 p mountain_bike.size
-p mountain_bike.spares
-# -> { :tire_size => "2.1",
-#      :chain => "10-speed",
-#      :rear_shock => "Fox" }
+# p mountain_bike.spares
+p mountain_bike.tire_size
+p mountain_bike.chain
