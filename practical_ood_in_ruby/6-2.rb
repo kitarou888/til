@@ -1,8 +1,10 @@
 class Bicycle
-  attr_reader :size # RoadBikeから昇格
+  attr_reader :size, :chain, :tire_size
 
   def initialize(args={})
-    @size = args[:size] # Roadbikeから昇格
+    @size = args[:size]
+    @chain = args[:chain]
+    @tire_size = args[:tire_size]
   end
 end
 
@@ -16,15 +18,9 @@ class RoadBike < Bicycle
 
   # styleの確認は危険な道へ進む一歩
   def spares
-    if style == :road
-      { chain: "10-speed",
-        tire_size: "23",
-        tape_color: tape_color }
-    else
-      { chain: "10-speed",
-        tire_size: "2.1",
-        rear_shock: rear_shock }
-    end
+    { chain: "10-speed",
+      tire_size: "23",
+      tape_color: tape_color }
   end
 end
 
@@ -44,6 +40,7 @@ end
 
 road_bike = RoadBike.new(size: 'M', tape_color: 'red')
 p road_bike.size
+p road_bike.spares
 
 mountain_bike = MountainBike.new(size: 'S', front_shock: 'Manitou', rear_shock: 'Fox')
 p mountain_bike.size
