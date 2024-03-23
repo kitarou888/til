@@ -1,19 +1,22 @@
-s = gets.chomp
-n = s.length
+n = gets.to_i
+str = gets.chomp
+arrC = gets.split.map(&:to_i)
 
-count1 = count2 = 0
+strA = ''
+strB = ''
 
 for i in 1..n-1 do
-  for j in i+1..n do
-    if s[i-1] != s[j-1] then
-      count1 += 1
-    end
-    count2 += 1
+  for j in 1..n do
+    strA << 1
+    strB << 0
+    if j == i
+      strA << 
   end
 end
 
-if count1 != count2 then
-  count1 += 1
-end
+# n, k = gets.split.map(&:to_i)
+# arrA = gets.split.map(&:to_i)
 
-print count1
+# arrA_filter = (arrA.select { |num| num <= k }).uniq
+
+# print (1..k).sum - arrA_filter.sum
