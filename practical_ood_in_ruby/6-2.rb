@@ -14,6 +14,10 @@ class Bicycle
   def default_tire_size
     raise NotImplementedError, "This #{self.class} cannot respond to:"
   end
+
+  def spares
+    { tire_size: tire_size,
+      chain: chain }
 end
 
 class RoadBike < Bicycle
