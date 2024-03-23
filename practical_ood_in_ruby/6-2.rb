@@ -25,7 +25,9 @@ class RoadBike < Bicycle
   end
 
   def spares
-    { tape_color: tape_color }
+    { chain: '10-speed',
+      tire_size: '23',
+      tape_color: tape_color }
   end
 
   def default_tire_size # <- サブクラスの初期値
