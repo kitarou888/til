@@ -15,7 +15,11 @@ class Bicycle
 
   def spares
     { tire_size: tire_size,
-      chain: chain }
+      chain: chain }.merge(local_spares)
+  end
+
+  def local_spares # サブクラスがオーバーライドするためのフック
+    {}
   end
 
   def default_chain # <- 共通の初期値
@@ -34,8 +38,8 @@ class RoadBike < Bicycle
     @tape_color = args[:tape_color]
   end
 
-  def spares
-    super.merge({ tape_color: tape_color })
+  def local_spares
+    { tape_color: tape_color }
   end
 
   def default_tire_size # <- サブクラスの初期値
