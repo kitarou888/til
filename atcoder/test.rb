@@ -1,13 +1,13 @@
-n = gets.to_i
-arrA = gets.split.map(&:to_i)
+n, a, b = gets.split.map(&:to_i)
 
-array = arrA.map do |i|
+value = (1..n).select do |i|
   count = 0
-  while i % 2 == 0 do
-    count += 1
-    i /= 2
+  while true
+    count += i % 10
+    i /= 10
+    break if i == 0
   end
-  count
+  a <= count && count <= b
 end
 
-print array.min
+print value.sum
