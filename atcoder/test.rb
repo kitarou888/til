@@ -1,4 +1,12 @@
 n = gets.to_i
+arrD = (1..n).map do |i|
+  value = gets.to_i
+end
+
+print arrD.sort.uniq.length
+
+__END__
+n = gets.to_i
 arrA = gets.split.map(&:to_i)
 
 count = 0
@@ -11,18 +19,3 @@ arrA.sort.reverse.each_with_index do |x, i|
 end
 
 print count
-
-__END__
-n, a, b = gets.split.map(&:to_i)
-
-value = (1..n).select do |i|
-  count = 0
-  while true
-    count += i % 10
-    i /= 10
-    break if i == 0
-  end
-  a <= count && count <= b
-end
-
-print value.sum
