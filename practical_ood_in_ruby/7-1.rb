@@ -35,25 +35,6 @@ class Bicycle
     1
   end
 
-  def initialize(args={})
-    @schedule = args[:schedule] || Schedule.new # Scheduleを注入し初期値を設定
-    # @size = args[:size]
-    # @chain = args[:chain] || default_chain
-    # @tire_size = args[:tire_size] || default_tire_size
-
-    # post_initialize(args) # Bicycleでは送信と・・・
-  end
-
-  # 与えられた期間の間、bicycleが利用可能であればtrueを返す
-  def schedulable?(start_date, end_date)
-    !scheduled?(start_date - lead_days, end_date)
-  end
-
-  # scheduleの答えを返す
-  def scheduled?(start_date, end_date)
-    schedule.scheduled?(self, start_date, end_date)
-  end
-
   # bicycleがスケジュール可能となるまでの準備日数
   def lead_days
     1
@@ -81,9 +62,31 @@ class Bicycle
   end
 end
 
+class Vehicle
+  include Schedulable
+
+  def lead_days
+    3
+  end
+end
+
+class Mechanic
+  include Schedulable
+
+  def lead_days
+    4
+  end
+end
+
 require 'date'
 starting = Date.parse("2015/09/04")
 ending   = Date.parse("2015/09/10")
 
 b = Bicycle.new
 b.schedulable?(starting, ending)
+
+v = Vehicle.new
+v.schedulable?(starting, ending)
+
+m = Mechanic.new
+m.schedulable?(starting, ending)
