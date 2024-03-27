@@ -29,7 +29,11 @@ module Schedulable
 end
 
 class Bicycle
-  attr_reader :schedule, :size, :chain, :tire_size
+  include Schedulable
+
+  def lead_days
+    1
+  end
 
   def initialize(args={})
     @schedule = args[:schedule] || Schedule.new # Scheduleを注入し初期値を設定
