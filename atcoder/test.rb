@@ -1,3 +1,23 @@
+n = gets.to_i
+arrTXY = (1..n).map do |arr|
+  gets.split.map(&:to_i)
+end
+
+arrTXY.each_with_index do |n, i|
+  if i > 0
+    result = (n[0] - arrTXY[i - 1][0]) - ((n[1] - arrTXY[i - 1][1]).abs + (n[2] - arrTXY[i - 1][2]).abs)
+  else
+    result = n[0] - (n[1].abs + n[2].abs)
+  end
+  if !(result >= 0 && result <= n[0] - 1 && result % 2 == 0)
+    print 'No'
+    exit
+  end
+end
+
+print 'Yes'
+
+__END__
 s = gets.chomp
 
 s1 = 'dream'
@@ -19,17 +39,3 @@ while true do
     exit
   end
 end
-
-__END__
-n, total = gets.split.map(&:to_i)
-
-(0..n).each do |x|
-  (0..n - x).each do |y|
-    if 1000 * x + 5000 * y + 10000 * (n - x - y) == total
-      print "#{n - x - y} #{y} #{x}"
-      exit
-    end
-  end
-end
-
-print '-1 -1 -1'
