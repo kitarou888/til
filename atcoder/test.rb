@@ -1,11 +1,15 @@
-n, k = gets.split.map(&:to_i)
-arrA = gets.split.map(&:to_i)
+s = gets.chomp
 
-print ((arrA.select do |i|
-  i % k == 0
-end).map do |i|
-  i / k
-end).join(' ')
+size = s.length
+
+result = []
+(1..size).each do |i| # 何文字抜くか
+  (0..size-1).each do |j| # どこから抜くか
+    result.push s.slice(j, i)
+  end
+end
+
+print result.uniq.length
 
 __END__
 n = gets.to_i
