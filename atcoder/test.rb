@@ -1,32 +1,52 @@
-s = gets.chomp
+n, a, b = gets.split.map(&:to_i)
+arrD = gets.split.map(&:to_i)
 
-size = s.length
-
-result = []
-(1..size).each do |i| # 何文字抜くか
-  (0..size-1).each do |j| # どこから抜くか
-    result.push s.slice(j, i)
-  end
+week = []
+(1..a).each do |i|
+  week.push true
 end
-
-print result.uniq.length
-
-__END__
-n = gets.to_i
-arrTXY = (1..n).map do |arr|
-  gets.split.map(&:to_i)
+(a+1..a+b).each do |i|
+  week.push false
 end
+week.concat week
 
-arrTXY.each_with_index do |n, i|
-  if i > 0
-    result = (n[0] - arrTXY[i - 1][0]) - ((n[1] - arrTXY[i - 1][1]).abs + (n[2] - arrTXY[i - 1][2]).abs)
-  else
-    result = n[0] - (n[1].abs + n[2].abs)
-  end
-  if !(result >= 0 && result <= n[0] - 1 && result % 2 == 0)
-    print 'No'
+arrUniq = (arrD.map do |i|
+  i % (a + b)
+end).uniq
+
+(0..a+b-1).each do |i|
+  beforeCount = arrUniq.length
+  if arrUniq.all? { |n| week[i + n - 1] }
+    print 'Yes'
     exit
   end
 end
 
-print 'Yes'
+print 'No'
+
+__END__
+n, a, b = gets.split.map(&:to_i)
+arrD = gets.split.map(&:to_i)
+
+week = []
+(1..a).each do |i|
+  week.push true
+end
+(a+1..a+b).each do |i|
+  week.push false
+end
+week.concat week
+
+arrUniq = (arrD.map do |i|
+  i % (a + b)
+end).uniq
+
+(0..a+b-1).each do |i|
+  beforeCount = arrUniq.length
+  if arrUniq.all? { |n| week[i + n - 1] }
+    print 'Yes'
+    exit
+  end
+end
+
+print 'No'
