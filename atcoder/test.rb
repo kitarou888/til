@@ -1,3 +1,13 @@
+n, k = gets.split.map(&:to_i)
+arrA = gets.split.map(&:to_i)
+
+print ((arrA.select do |i|
+  i % k == 0
+end).map do |i|
+  i / k
+end).join(' ')
+
+__END__
 n = gets.to_i
 arrTXY = (1..n).map do |arr|
   gets.split.map(&:to_i)
@@ -16,26 +26,3 @@ arrTXY.each_with_index do |n, i|
 end
 
 print 'Yes'
-
-__END__
-s = gets.chomp
-
-s1 = 'dream'
-s2 = 'dreamer'
-s3 = 'erase'
-s4 = 'eraser'
-
-while true do
-  if s.delete_suffix(s1) == s && s.delete_suffix(s2) == s && s.delete_suffix(s3) == s && s.delete_suffix(s4) == s
-    print 'NO'
-    exit
-  end
-  s.delete_suffix!(s1) if s.delete_suffix(s1) != s
-  s.delete_suffix!(s2) if s.delete_suffix(s2) != s
-  s.delete_suffix!(s3) if s.delete_suffix(s3) != s
-  s.delete_suffix!(s4) if s.delete_suffix(s4) != s
-  if s == ''
-    print 'YES'
-    exit
-  end
-end
