@@ -1,33 +1,81 @@
-# -*- coding: utf-8 -*-
+def knapsack(wv, c):
+    if len(wv) == 0:
+        return 0
 
-def find_max_dp(num_list, limit):
-    list_len = len(num_list)
-    dp_table = [
-        [0 for j in range(limit + 1)] for i in range(list_len)
-    ]
+    sliced_wv = wv[1:]
 
-    for j in range(limit + 1):
-        if num_list[0] <= j:
-            dp_table[0][j] = num_list[0]
+    if wv[0][0] > c:
+        max_value = knapsack(sliced_wv, c)
+    else:
+        no_put_value = knapsack(sliced_wv, c)
+        put_value = wv[0][1] + knapsack(sliced_wv, c - wv[0][0])
+        max_value = max(no_put_value, put_value)
 
-    for i in range(1, list_len):
-        for j in range(limit + 1):
-            if num_list[i] > j:
-                dp_table[i][j] = dp_table[i - 1][j]
-            else:
-                tmp_choice = dp_table[i - 1][j - num_list[i]] + num_list[i]
-                dp_table[i][j] = max(dp_table[i - 1][j], tmp_choice)
+    return max_value
 
-    return dp_table[list_len - 1][limit]
+C = 5
+WV = [[2, 2], [2, 4], [3, 3]]
 
-num_list = [3, 5, 7]
-limit = 10
-list_total_with_limit = find_max_dp(num_list, limit)
+print(knapsack(WV, C))
 
-if limit == list_total_with_limit:
-    print('Yes')
-else:
-    print('No')
+# h, w = map(int, input().split())
+# MAP = []
+# for _ in range(h):
+#     MAP.append(list(input()))
+# n = int(input())
+# portion = []
+# for _ in range(n):
+#     portion.append(list(map(int, input().split())))
+
+# print(A)
+# print(B)
+
+# def step(map)
+
+
+
+# n = int(input())
+# A = []
+# for _ in range(n):
+#     A.append(list(map(int, input().split())))
+
+# d = {}
+
+# max = 0
+# for i in A:
+#     if str(i[1]) in d:
+#         d[str(i[1])] = min(d[str(i[1])], i[0])
+#     else:
+#         d[str(i[1])] = i[0]
+
+# max_key, max_value = '', 0
+# for k, v in d.items():
+#     if v > max_value:
+#         max_key = k
+#         max_value = v
+
+# print(max_value)
+
+# n = int(input())
+# A = []
+# for _ in range(n):
+#     A.append(list(map(int, input().split())))
+
+# for point in A:
+#     max_d = 0
+#     target = 0
+#     for i, v in enumerate(A):
+#         d = (v[0] - point[0]) ** 2 + (v[1] - point[1]) ** 2
+#         if d > max_d:
+#             target = i + 1
+#             max_d = d
+#     print(target)
+
+
+
+# 動的計画法（ナップサック問題）
+# def knapsack():
+#     a
 
 
 """
@@ -71,6 +119,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+
 
 # 迷路問題
 map = [
@@ -119,6 +168,7 @@ def main():
 if __name__ == '__main__':
     main()
 
+
 # 線形探索
 def linear_search(data, key):
     position = 0
@@ -130,6 +180,7 @@ def linear_search(data, key):
         steps += 1
         position += 1
     return steps,-1
+
 
 # 二分木探索
 def binary_search(data, key):
@@ -146,6 +197,7 @@ def binary_search(data, key):
             end = middle - 1
         steps += 1
     return steps,-1
+
 
 # 探索の実行と最大ステップ数を求める処理
 def search(title, data, func):
@@ -165,6 +217,37 @@ if __name__ == '__main__':
     print("探索データ:{}\n長さ:{}\n".format(data,length))
     search("線形探索",data,linear_search)
     search("二分木探索",data,binary_search)
+
+
+# 動的計画法（部分話問題）
+def find_max_dp(num_list, limit):
+    list_len = len(num_list)
+    dp_table = [
+        [0 for j in range(limit + 1)] for i in range(list_len)
+    ]
+
+    for j in range(limit + 1):
+        if num_list[0] <= j:
+            dp_table[0][j] = num_list[0]
+
+    for i in range(1, list_len):
+        for j in range(limit + 1):
+            if num_list[i] > j:
+                dp_table[i][j] = dp_table[i - 1][j]
+            else:
+                tmp_choice = dp_table[i - 1][j - num_list[i]] + num_list[i]
+                dp_table[i][j] = max(dp_table[i - 1][j], tmp_choice)
+
+    return dp_table[list_len - 1][limit]
+
+num_list = [3, 5, 7]
+limit = 10
+list_total_with_limit = find_max_dp(num_list, limit)
+
+if limit == list_total_with_limit:
+    print('Yes')
+else:
+    print('No')
 
 
 """
