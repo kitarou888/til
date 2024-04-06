@@ -1,19 +1,24 @@
 # -*- coding: utf-8 -*-
 
-fib_list = [0] * 101
+n, k = map(int, input().split())
+a = list(map(int, input().split()))
 
-def fib(n):
-    if n == 0:
-        return 0
-    if n == 1:
-        return 1
+print(n, k, a)
 
-    if fib_list[n] == 0:
-        fib_list[n] = fib(n - 1) + fib(n - 2)
+answer = False
+for i in range(1 << n):
+    sum = 0
+    for j in range(3):
+        if (i >> j) % 2 == 1:
+            sum += a[j]
+    if sum == k:
+        answer = True
+
+print('Yes' if answer == True else 'No')
+
+# def find_max_dp(num_list, limit):
     
-    return fib_list[n]
 
-print(fib(50))
 
 """
 
