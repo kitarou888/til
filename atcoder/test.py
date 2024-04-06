@@ -1,26 +1,51 @@
 # -*- coding: utf-8 -*-
 
-n, k = map(int, input().split())
-a = list(map(int, input().split()))
+def find_max_dp(num_list, limit):
+    list_len = len(num_list)
+    dp_table = [
+        [0 for j in range(limit + 1)] for i in range(list_len)
+    ]
 
-print(n, k, a)
+    for j in range(limit + 1):
+        if num_list[0] <= j:
+            dp_table[0][j] = num_list[0]
 
-answer = False
-for i in range(1 << n):
-    sum = 0
-    for j in range(3):
-        if (i >> j) % 2 == 1:
-            sum += a[j]
-    if sum == k:
-        answer = True
+    for i in range(1, list_len):
+        for j in range(limit + 1):
+            if num_list[i] > j:
+                dp_table[i][j] = dp_table[i - 1][j]
+            else:
+                tmp_choice = dp_table[i - 1][j - num_list[i]] + num_list[i]
+                dp_table[i][j] = max(dp_table[i - 1][j], tmp_choice)
 
-print('Yes' if answer == True else 'No')
+    return dp_table[list_len - 1][limit]
 
-# def find_max_dp(num_list, limit):
-    
+num_list = [3, 5, 7]
+limit = 10
+list_total_with_limit = find_max_dp(num_list, limit)
+
+if limit == list_total_with_limit:
+    print('Yes')
+else:
+    print('No')
 
 
 """
+
+# AtCoder用（標準入力受付け）
+s = input() # str型で受け取る
+n = int(input()) # int型で受け取る
+f = # float型(小数)で受け取る
+n, k = map(int, input().split()) # 複数の整数を受け取る
+arr = list(map(int, input().split())) # list型で整数を受け取る
+# N行データを受け取る
+N, M = map(int, input().split())
+A = []
+for _ in range(M):
+    A.append(int(input()))
+
+print("{} {}".format(a+b+c, s))
+
 
 # ナップサック問題
 CAPACITY = 5
@@ -141,19 +166,5 @@ if __name__ == '__main__':
     search("線形探索",data,linear_search)
     search("二分木探索",data,binary_search)
 
-
-
-a = int(input())
-arr = list(map(int, input().split()))
-b,c = arr
-s = input()
-
-print(a)
-print(arr)
-print(b)
-print(c)
-print(s)
-
-print("{} {}".format(a+b+c, s))
 
 """
