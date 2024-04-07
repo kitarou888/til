@@ -1,17 +1,36 @@
 def knapsack(wv, c):
-    if len(wv) == 0:
-        return 0
+    dp_table = [[0 for i in range(c + 1)] for j in range(len(wv))]
+    print(dp_table)
 
-    sliced_wv = wv[1:]
+    for i in range(len(wv)):
+        for j in range(c + 1):
+            if wv[i][0] > j:
+                if i > 0:
+                    dp_table[i][j] = dp_table[i - 1][j]
+            else:
+                if i > 0:
+                    no_put_value = dp_table[i - 1][j]
+                    put_value = wv[i][1] + dp_table[i - 1][j - wv[i][0]]
+                    dp_table[i][j] = max(no_put_value, put_value)
+                else:
+                    dp_table[i][j] = wv[i][1]
+    print(dp_table)
+    return dp_table[len(wv) - 1][c]
 
-    if wv[0][0] > c:
-        max_value = knapsack(sliced_wv, c)
-    else:
-        no_put_value = knapsack(sliced_wv, c)
-        put_value = wv[0][1] + knapsack(sliced_wv, c - wv[0][0])
-        max_value = max(no_put_value, put_value)
+# def knapsack(wv, c):
+#     if len(wv) == 0:
+#         return 0
 
-    return max_value
+#     sliced_wv = wv[1:]
+
+#     if wv[0][0] > c:
+#         max_value = knapsack(sliced_wv, c)
+#     else:
+#         no_put_value = knapsack(sliced_wv, c)
+#         put_value = wv[0][1] + knapsack(sliced_wv, c - wv[0][0])
+#         max_value = max(no_put_value, put_value)
+
+#     return max_value
 
 C = 5
 WV = [[2, 2], [2, 4], [3, 3]]
