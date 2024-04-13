@@ -1,41 +1,6 @@
-def knapsack(wv, c):
-    dp_table = [[0 for i in range(c + 1)] for j in range(len(wv))]
-    print(dp_table)
+n, q = map(int, input().split())
+print(n, q)
 
-    for i in range(len(wv)):
-        for j in range(c + 1):
-            if wv[i][0] > j:
-                if i > 0:
-                    dp_table[i][j] = dp_table[i - 1][j]
-            else:
-                if i > 0:
-                    no_put_value = dp_table[i - 1][j]
-                    put_value = wv[i][1] + dp_table[i - 1][j - wv[i][0]]
-                    dp_table[i][j] = max(no_put_value, put_value)
-                else:
-                    dp_table[i][j] = wv[i][1]
-    print(dp_table)
-    return dp_table[len(wv) - 1][c]
-
-# def knapsack(wv, c):
-#     if len(wv) == 0:
-#         return 0
-
-#     sliced_wv = wv[1:]
-
-#     if wv[0][0] > c:
-#         max_value = knapsack(sliced_wv, c)
-#     else:
-#         no_put_value = knapsack(sliced_wv, c)
-#         put_value = wv[0][1] + knapsack(sliced_wv, c - wv[0][0])
-#         max_value = max(no_put_value, put_value)
-
-#     return max_value
-
-C = 5
-WV = [[2, 2], [2, 4], [3, 3]]
-
-print(knapsack(WV, C))
 
 # h, w = map(int, input().split())
 # MAP = []
@@ -114,7 +79,7 @@ for _ in range(M):
 print("{} {}".format(a+b+c, s))
 
 
-# ナップサック問題
+# ナップサック問題（再帰呼び出し）
 CAPACITY = 5
 values = [2, 4, 3]
 weight = [2, 2, 3]
@@ -140,25 +105,12 @@ if __name__ == '__main__':
     main()
 
 
-# 迷路問題
-map = [
-    ['o','o','o','o','o','x','o','x','o','o','o','x','o','o','o','o',],
-    ['o','x','o','x','x','x','o','x','o','x','o','x','o','x','o','x',],
-    ['o','x','o','o','o','o','o','x','o','x','o','o','o','x','o','o',],
-    ['o','o','x','x','o','x','x','x','o','x','x','x','x','x','x','o',],
-    ['x','o','x','x','o','o','o','o','o','o','o','o','o','x','o','o',],
-    ['o','o','o','x','o','x','x','x','o','x','x','o','x','o','o','x',],
-    ['x','o','x','x','o','x','o','x','o','x','x','o','x','o','x','x',],
-    ['o','o','o','o','o','o','o','o','o','x','o','o','x','o','o','G',],
-]
-
-WIDTH = len(map[0])
-HEIGHT = len(map)
+# 迷路問題（再帰呼び出し）
 
 def maze(start, map):
     i, j = start
 
-    if i < 0 or WIDTH <= i or j < 0 or HEIGHT <= j:
+    if i < 0 or len(map[0]) <= i or j < 0 or len(map) <= j:
         return False
     if map[j][i] =='p':
         return False
@@ -179,13 +131,58 @@ def maze(start, map):
     else:
         return False
 
-def main():
-    start = (2,2)
-    isGoal = maze(start, map)
-    print('OK') if isGoal else print('NG')
+print(maze(start, map))
 
-if __name__ == '__main__':
-    main()
+
+# 最短経路問題（動的計画法）
+
+def maze(start, map):
+    dp = map
+    height = len(map)
+    width = len(map[0])
+    x, y = start
+    if dp[y][x] == 'G': return True
+    dp[y][x] = 0
+
+    k = 1
+    while True:
+        flg_continued = False
+        for j in range(height):
+            for i in range(width):
+                if dp[j][i] == k - 1:
+                    if i > 0 and dp[j][i - 1] == 'G': return True
+                    if j > 0 and dp[j - 1][i] == 'G': return True
+                    if i < width - 1 and dp[j][i + 1] == 'G': return True
+                    if j < height - 1 and dp[j + 1][i] == 'G': return True
+
+                    if i > 0 and dp[j][i - 1] == 'o':
+                        dp[j][i - 1] = k
+                        flg_continued = True
+                    if j > 0 and dp[j - 1][i] == 'o':
+                        dp[j - 1][i] = k
+                        flg_continued = True
+                    if i < width - 1 and dp[j][i + 1] == 'o':
+                        dp[j][i + 1] = k
+                        flg_continued = True
+                    if j < height - 1 and dp[j + 1][i] == 'o':
+                        dp[j + 1][i] = k
+                        flg_continued = True
+        print(dp)
+        if flg_continued == False: return False
+        k += 1
+
+map = [
+    ['o','o','o','o','o','x','o','x','o','o','o','x','o','o','o','o',],
+    ['o','x','o','x','x','x','o','x','o','x','o','x','o','x','o','x',],
+    ['o','x','o','o','o','o','o','x','o','x','o','o','o','x','o','o',],
+    ['o','o','x','x','o','x','x','x','o','x','x','x','x','x','x','o',],
+    ['x','o','x','x','o','x','o','o','o','o','o','o','o','x','o','o',],
+    ['o','o','o','x','o','x','x','x','x','x','x','o','x','o','o','x',],
+    ['x','o','x','x','o','x','o','x','o','x','x','o','x','o','x','x',],
+    ['o','o','o','o','o','o','o','o','o','x','o','o','x','o','o','G',],
+]
+start = (6, 4)
+print(maze(start, map))
 
 
 # 線形探索
@@ -238,7 +235,7 @@ if __name__ == '__main__':
     search("二分木探索",data,binary_search)
 
 
-# 動的計画法（部分話問題）
+# 動的計画法（部分和問題）
 def find_max_dp(num_list, limit):
     list_len = len(num_list)
     dp_table = [
@@ -268,5 +265,46 @@ if limit == list_total_with_limit:
 else:
     print('No')
 
+
+# ナップサック問題（動的計画法）
+def knapsack(wv, c):
+dp_table = [[0 for i in range(c + 1)] for j in range(len(wv))]
+print(dp_table)
+
+for i in range(len(wv)):
+    for j in range(c + 1):
+        if wv[i][0] > j:
+            if i > 0:
+                dp_table[i][j] = dp_table[i - 1][j]
+        else:
+            if i > 0:
+                no_put_value = dp_table[i - 1][j]
+                put_value = wv[i][1] + dp_table[i - 1][j - wv[i][0]]
+                dp_table[i][j] = max(no_put_value, put_value)
+            else:
+                dp_table[i][j] = wv[i][1]
+print(dp_table)
+return dp_table[len(wv) - 1][c]
+
+# 参考）ナップサック問題（再帰呼び出し）
+def knapsack(wv, c):
+    if len(wv) == 0:
+        return 0
+
+    sliced_wv = wv[1:]
+
+    if wv[0][0] > c:
+        max_value = knapsack(sliced_wv, c)
+    else:
+        no_put_value = knapsack(sliced_wv, c)
+        put_value = wv[0][1] + knapsack(sliced_wv, c - wv[0][0])
+        max_value = max(no_put_value, put_value)
+
+    return max_value
+
+C = 5
+WV = [[2, 2], [2, 4], [3, 3]]
+
+print(knapsack(WV, C))
 
 """
