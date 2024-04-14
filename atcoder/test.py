@@ -1,19 +1,20 @@
-s = input()
-cnt = [0] * 26
-for c in s:
-    cnt[ord(c) - ord('a')] += 1
+s = input().upper()
+t = input()
 
-cnt2 = [0] * 101
-for c in cnt:
-    if c > 0:
-        cnt2[c] += 1
-if all(c in (0, 2) for c in cnt2):
+def check(S, T):
+    i = 0
+    if T[2] == 'X': T = T[:2]
+    for t in T:
+        while i <len(S) and S[i] != t:
+            i += 1
+        if i == len(S): return False
+        i += 1
+    return True
+
+if check(s, t):
     print('Yes')
 else:
     print('No')
-
-
-
 
 """
 # AtCoder用（標準入力受付け）
@@ -31,65 +32,6 @@ for _ in range(M):
 print("{} {}".format(a+b+c, s))
 """
 
-
-# h, w = map(int, input().split())
-# MAP = []
-# for _ in range(h):
-#     MAP.append(list(input()))
-# n = int(input())
-# portion = []
-# for _ in range(n):
-#     portion.append(list(map(int, input().split())))
-
-# print(A)
-# print(B)
-
-# def step(map)
-
-
-
-# n = int(input())
-# A = []
-# for _ in range(n):
-#     A.append(list(map(int, input().split())))
-
-# d = {}
-
-# max = 0
-# for i in A:
-#     if str(i[1]) in d:
-#         d[str(i[1])] = min(d[str(i[1])], i[0])
-#     else:
-#         d[str(i[1])] = i[0]
-
-# max_key, max_value = '', 0
-# for k, v in d.items():
-#     if v > max_value:
-#         max_key = k
-#         max_value = v
-
-# print(max_value)
-
-# n = int(input())
-# A = []
-# for _ in range(n):
-#     A.append(list(map(int, input().split())))
-
-# for point in A:
-#     max_d = 0
-#     target = 0
-#     for i, v in enumerate(A):
-#         d = (v[0] - point[0]) ** 2 + (v[1] - point[1]) ** 2
-#         if d > max_d:
-#             target = i + 1
-#             max_d = d
-#     print(target)
-
-
-
-# 動的計画法（ナップサック問題）
-# def knapsack():
-#     a
 
 
 """
