@@ -1,5 +1,35 @@
-n, q = map(int, input().split())
-print(n, q)
+s = input()
+cnt = [0] * 26
+for c in s:
+    cnt[ord(c) - ord('a')] += 1
+
+cnt2 = [0] * 101
+for c in cnt:
+    if c > 0:
+        cnt2[c] += 1
+if all(c in (0, 2) for c in cnt2):
+    print('Yes')
+else:
+    print('No')
+
+
+
+
+"""
+# AtCoder用（標準入力受付け）
+s = input() # str型で受け取る
+n = int(input()) # int型で受け取る
+f = # float型(小数)で受け取る
+n, k = map(int, input().split()) # 複数の整数を受け取る
+arr = list(map(int, input().split())) # list型で整数を受け取る
+# N行データを受け取る
+N, M = map(int, input().split())
+A = []
+for _ in range(M):
+    A.append(int(input()))
+
+print("{} {}".format(a+b+c, s))
+"""
 
 
 # h, w = map(int, input().split())
@@ -63,21 +93,6 @@ print(n, q)
 
 
 """
-
-# AtCoder用（標準入力受付け）
-s = input() # str型で受け取る
-n = int(input()) # int型で受け取る
-f = # float型(小数)で受け取る
-n, k = map(int, input().split()) # 複数の整数を受け取る
-arr = list(map(int, input().split())) # list型で整数を受け取る
-# N行データを受け取る
-N, M = map(int, input().split())
-A = []
-for _ in range(M):
-    A.append(int(input()))
-
-print("{} {}".format(a+b+c, s))
-
 
 # ナップサック問題（再帰呼び出し）
 CAPACITY = 5
