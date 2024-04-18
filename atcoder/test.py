@@ -1,20 +1,3 @@
-s = input().upper()
-t = input()
-
-def check(S, T):
-    i = 0
-    if T[2] == 'X': T = T[:2]
-    for t in T:
-        while i <len(S) and S[i] != t:
-            i += 1
-        if i == len(S): return False
-        i += 1
-    return True
-
-if check(s, t):
-    print('Yes')
-else:
-    print('No')
 
 """
 # AtCoder用（標準入力受付け）
@@ -29,7 +12,67 @@ A = []
 for _ in range(M):
     A.append(int(input()))
 
-print("{} {}".format(a+b+c, s))
+print("{} {}".format(a + b + c, s))
+print(a + b + c, s) は同じ
+
+# リスト [0, 1, 2, 3, 4] を作る
+a = list(range(5))
+
+# リスト [1, 6] とリスト [1, 8] をつなげて [1, 6, 1, 8] を作る
+a = [1, 6] + [1, 8]
+
+# a の i 番目の位置 (a[i-1] と a[i] の間) に x を挿入
+a.insert(i, x)
+# リスト a と整数 i に対し、 a の i 番目の要素を取得しながら削除
+a.pop(i)
+# x が a の中に 1 個以上存在するかを判定
+x in a
+# x が a の中に何個存在するかを取得
+a.count(x)
+# a の中に x が出現する最初の位置を取得
+a.index(x)
+# リストをディープコピー
+b = a.copy()
+
+# リスト a を文字列 " + " で結合（Rubyと前後が逆なことに注意）
+print(" + ".join(a))
+
+# s を逆順にした文字列 "EDCBA" を出力
+print(s[::-1])
+
+# "ABABABA" の部分文字列に "BAB" があるか判定する
+print("BAB" in s)
+
+# "ABABABA" に現れる最初の部分文字列 "BAB" の位置を求める←1を出力
+print(s.index("BAB"))
+
+# "ABABABA" に重ならずに現れる部分文字列 "BAB" の個数を求める
+print(s.count("BAB"))
+
+# "AAAAA" に出現する "AA" を "X" に置き換えた文字列 "XXA" を出力する
+print("AAAAA".replace("AA", "X"))
+
+★Python の文字列は一度作ると変更することができない→一度listにする。
+a = list(s)
+# a の 0 番目の要素を "M" に変更する
+a[0] = "M"
+# a の要素をつなげて出力する
+print("".join(a))
+
+ord(c)・・・文字をコードポイントに
+chr(x)・・・コードポイントを文字に
+
+divmod(a, b)・・・aをbで割った商と余りを返す
+pow(a, b)・・・aのb乗を返す  ★「**」を使うより高速
+pow(a, b, mod)・・・aのb乗をmodで割った余りを返す  ★「%」を使うより高速
+
+l = [1, 3, -5, 2]
+res = all([v > 0 for v in l]) # l に含まれる値が全て正か？
+res2 = any([v % 2 == 0 for v in l]) # l に偶数が含まれるか？
+
+# リストのインデックスと値を同時に取得
+for i,v in enumerate(l)
+
 """
 
 
