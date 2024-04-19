@@ -299,3 +299,7 @@
 4/10(水) Rails チュートリアル輪読会（Docker 学習）
 4/11(木) ブルーベリー本輪読会（!と as ＋型、any 型、as const）
 4/12(金) Rails チュートリアル（Docker 環境構築確認）
+4/15(月) AtCoder（Python 入門〜）
+4/16(火) AtCoder（Python 入門〜）、ブルーベリー本輪読会
+4/17(水) AtCoder（Python 入門〜）
+4/19(金) Rails チュートリアル 2 章
