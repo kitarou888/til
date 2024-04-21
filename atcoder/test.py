@@ -1,3 +1,17 @@
+n = int(input())
+l = list(map(int, input().split()))
+
+cnt = 0
+for i in range(n - 2):
+    for j in range(i + 1, n - 1):
+        for k in range(j + 1, n):
+            if l[i] == l[j] or l[j] == l[k] or l[k] == l[i]: continue
+            if l[i] + l[j] <= l[k] or l[j] + l[k] <= l[i] or l[k] + l[i] <= l[j]: continue
+            cnt += 1
+
+print(cnt)
+
+
 
 """
 # AtCoder用（標準入力受付け）
@@ -72,6 +86,11 @@ res2 = any([v % 2 == 0 for v in l]) # l に偶数が含まれるか？
 
 # リストのインデックスと値を同時に取得
 for i,v in enumerate(l)
+
+# リスト内包表記（all()、any()、map的な）
+all([i > 2 for i in l])
+any([i > 2 for i in l])
+[i * 2 for i in [1, 6, 9]]
 
 """
 
