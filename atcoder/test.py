@@ -1,14 +1,15 @@
-n = int(input())
-a = sorted(list(map(int, input().split())), reverse=True)
+s = input()
+cnt = [0] * 26
+for i in s:
+    index = ord(i) - ord('a')
+    cnt[index] += 1
 
-a_upper_mid = a[:2*n]
-flg = False
-sum = 0
-for i in a_upper_mid:
-    if flg:
-        sum += i
-    flg = not flg
-print(sum)
+for i in range(26):
+    if cnt[i] == 0:
+        print(chr(ord('a') + i))
+        break
+else:
+    print('None')
 
 """
 # AtCoder用（標準入力受付け）
