@@ -1,53 +1,30 @@
-w, h, n = list(map(int, input().split()))
-XYA = []
+n = int(input())
+s = []
 for _ in range(n):
-    XYA.append(list(map(int, input().split())))
-map = [[0] * w for _ in range(h)]
+    s.append(input())
+m = int(input())
+t = []
+for _ in range(m):
+    t.append(input())
 
-def paint(x, y, a):
-    if a == 1:
-        for i in range(h):
-            for j in range(w):
-                if j < x:
-                    map[i][j] = 1
-    elif a == 2:
-        for i in range(h):
-            for j in range(w):
-                if j >= x:
-                    map[i][j] = 1
-    elif a == 3:
-        for i in range(h):
-            if i < y:
-                for j in range(w):
-                    map[i][j] = 1
-    elif a == 4:
-        for i in range(h):
-            # print(i, i[1])
-            if i >= y:
-                # print(range(len(map[3])))
-                for j in range(w):
-                    # print(i, j)
-                    map[i][j] = 1
+d = {}
 
-for i in XYA:
-    x, y, a = i
-    paint(x, y, a)
+for i in s:
+    if i in d:
+        d[i] += 1
+    else:
+        d[i] = 1
+for j in t:
+    if j in d:
+        d[j] -= 1
+    else:
+        d[j] = -1
 
-black = 0
-for a in map:
-    black += sum(a)
-print(w * h - black)
-
-# n = int(input())
-# s = []
-# for _ in range(n):
-#     s.append(input())
-# m = int(input())
-# t = []
-# for _ in range(m):
-#     t.append(input())
-
-
+max = 0
+for k in d:
+    if max < d[k]:
+        max = d[k]
+print(max)
 
 """
 # AtCoder用（標準入力受付け）
