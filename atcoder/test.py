@@ -1,17 +1,17 @@
-n = int(input())
-a = sorted(list(map(int, input().split())), reverse=True)
-
-flg = False
-alice = 0
-bob = 0
+n, x = list(map(int, input().split()))
+a = sorted(list(map(int, input().split())))
+cnt = 0
 for i in a:
-    if not flg:
-        alice += i
+    if i <= x:
+        x -= i
+        cnt += 1
     else:
-        bob += i
-    flg = not flg
+        break
+else:
+    if x > 0:
+        cnt -= 1
 
-print(alice - bob)
+print(cnt)
 
 
 """
