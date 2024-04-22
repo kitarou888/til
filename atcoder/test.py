@@ -1,15 +1,51 @@
-s = input()
-cnt = [0] * 26
-for i in s:
-    index = ord(i) - ord('a')
-    cnt[index] += 1
+w, h, n = list(map(int, input().split()))
+XYA = []
+for _ in range(n):
+    XYA.append(list(map(int, input().split())))
+map = [[0] * w for _ in range(h)]
+# print(map)
+for xya in XYA:
+    if xya[2] == 1:
+        for i in range(h):
+            for j in range(w):
+                if j < xya[0]:
+                    map[i][j] = 1
+    elif xya[2] == 2:
+        for i in range(h):
+            for j in range(w):
+                if j >= xya[0]:
+                    map[i][j] = 1
+    elif xya[2] == 3:
+        for i in range(h):
+            if i < xya[1]:
+                for j in range(w):
+                    map[i][j] = 1
+    elif xya[2] == 4:
+        for i in range(h):
+            # print(i, i[1])
+            if i >= xya[1]:
+                # print(range(len(map[3])))
+                for j in range(w):
+                    # print(i, j)
+                    map[i][j] = 1
+                    # print(map)
+    # print(map)
+# print(map)
+black = 0
+for a in map:
+    black += sum(a)
+print(w * h - black)
 
-for i in range(26):
-    if cnt[i] == 0:
-        print(chr(ord('a') + i))
-        break
-else:
-    print('None')
+# n = int(input())
+# s = []
+# for _ in range(n):
+#     s.append(input())
+# m = int(input())
+# t = []
+# for _ in range(m):
+#     t.append(input())
+
+
 
 """
 # AtCoder用（標準入力受付け）
