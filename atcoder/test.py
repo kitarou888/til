@@ -1,30 +1,12 @@
-n = int(input())
-s = []
-for _ in range(n):
-    s.append(input())
-m = int(input())
-t = []
-for _ in range(m):
-    t.append(input())
+n, k = list(map(int, input().split()))
+A = list(map(int, input().split()))
 
-d = {}
+backet = [0] * n
+for a in A:
+    backet[a - 1] += 1
+backet = sorted(backet, reverse=True)
+print(sum(backet[k:]))
 
-for i in s:
-    if i in d:
-        d[i] += 1
-    else:
-        d[i] = 1
-for j in t:
-    if j in d:
-        d[j] -= 1
-    else:
-        d[j] = -1
-
-max = 0
-for k in d:
-    if max < d[k]:
-        max = d[k]
-print(max)
 
 """
 # AtCoder用（標準入力受付け）
