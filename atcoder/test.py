@@ -1,16 +1,17 @@
 n = int(input())
-l = list(map(int, input().split()))
+a = sorted(list(map(int, input().split())), reverse=True)
 
-cnt = 0
-for i in range(n - 2):
-    for j in range(i + 1, n - 1):
-        for k in range(j + 1, n):
-            if l[i] == l[j] or l[j] == l[k] or l[k] == l[i]: continue
-            if l[i] + l[j] <= l[k] or l[j] + l[k] <= l[i] or l[k] + l[i] <= l[j]: continue
-            cnt += 1
+flg = False
+alice = 0
+bob = 0
+for i in a:
+    if not flg:
+        alice += i
+    else:
+        bob += i
+    flg = not flg
 
-print(cnt)
-
+print(alice - bob)
 
 
 """
