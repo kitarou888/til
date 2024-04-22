@@ -1,18 +1,14 @@
-n, x = list(map(int, input().split()))
-a = sorted(list(map(int, input().split())))
-cnt = 0
-for i in a:
-    if i <= x:
-        x -= i
-        cnt += 1
-    else:
-        break
-else:
-    if x > 0:
-        cnt -= 1
+n = int(input())
+a = sorted(list(map(int, input().split())), reverse=True)
 
-print(cnt)
-
+a_upper_mid = a[:2*n]
+flg = False
+sum = 0
+for i in a_upper_mid:
+    if flg:
+        sum += i
+    flg = not flg
+print(sum)
 
 """
 # AtCoder用（標準入力受付け）
