@@ -1,12 +1,48 @@
-M = []
-for i in range(3):
-    M.append(list(map(int, input().split())))
-ans = 'Yes'
-if not (M[0][0] - M[1][0] == M[0][1] - M[1][1] == M[0][2] - M[1][2] and M[0][0] - M[2][0] == M[0][1] - M[2][1] == M[0][2] - M[2][2]):
-    ans = 'No'
-if not (M[0][0] - M[0][1] == M[1][0] - M[1][1] == M[2][0] - M[2][1] and M[0][0] - M[0][2] == M[1][0] - M[1][2] == M[2][0] - M[2][2]):
-    ans = 'No'
-print(ans)
+A, B, C, X, Y = list(map(int, input().split()))
+
+min = A * X + B * Y
+
+if A >= C and B >= C:
+    if A > 2 * C or B > 2 * C:
+        c = 2 * max(X, Y)
+        a = b = 0
+    else:
+        if X > Y:
+            c = Y * 2
+            a = X - Y
+            b = 0
+        else:
+            c = X * 2
+            b = Y - X
+            a = 0
+elif A <= C and B <= C:
+    a = X
+    b = Y
+    c = 0
+else:
+    if A + B >= 2 * C:
+        if X > Y:
+            c = Y * 2
+            a = X - Y
+            b = 0
+        else:
+            c = X * 2
+            b = Y - X
+            a = 0
+    else:
+        a = X
+        b = Y
+        c = 0
+print(A * a + B * b + C * c)
+
+
+
+
+# Cが最も安い場合→Cを先に買えるだけ買う
+# Cが最も高い場合→AとBのみ買う
+# A＞B＞Cの場合→A+C＞B、A+C＜B
+# A＜B＞Cの場合→A+C＞B、A+C＜B
+
 
 """
 # AtCoder用（標準入力受付け）
