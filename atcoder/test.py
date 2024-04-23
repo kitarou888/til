@@ -1,12 +1,12 @@
-n, k = list(map(int, input().split()))
-A = list(map(int, input().split()))
-
-backet = [0] * n
-for a in A:
-    backet[a - 1] += 1
-backet = sorted(backet, reverse=True)
-print(sum(backet[k:]))
-
+M = []
+for i in range(3):
+    M.append(list(map(int, input().split())))
+ans = 'Yes'
+if not (M[0][0] - M[1][0] == M[0][1] - M[1][1] == M[0][2] - M[1][2] and M[0][0] - M[2][0] == M[0][1] - M[2][1] == M[0][2] - M[2][2]):
+    ans = 'No'
+if not (M[0][0] - M[0][1] == M[1][0] - M[1][1] == M[2][0] - M[2][1] and M[0][0] - M[0][2] == M[1][0] - M[1][2] == M[2][0] - M[2][2]):
+    ans = 'No'
+print(ans)
 
 """
 # AtCoder用（標準入力受付け）
