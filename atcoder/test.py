@@ -1,26 +1,16 @@
-n = int(input())
-A = list(map(int, input().split()))
-
-cnt = 1
+n, c, k = list(map(int, input().split()))
+T = []
+for _ in range(n):
+    T.append(int(input()))
+T.sort()
+cnt = 0
 i = 0
-while i < len(A) - 1:
-    if A[i + 1] > A[i]:
-        i += 1
-        while i < len(A) - 1:
-            if A[i + 1] >= A[i]:
-                i += 1
-            else:
-                cnt += 1
-                break
-    elif A[i + 1] < A[i]:
-        i += 1
-        while i < len(A) - 1:
-            if A[i + 1] <= A[i]:
-                i += 1
-            else:
-                cnt += 1
-                break
-    i += 1
+while i < n:
+    pas = T[i:min(i + c, n)]
+    pas = list(filter(lambda x: x - T[i] <= k, pas))
+    num = len(pas)
+    i += num
+    cnt += 1
 
 print(cnt)
 
