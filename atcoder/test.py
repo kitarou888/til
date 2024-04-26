@@ -1,36 +1,20 @@
-n = int(input())
-XYH = []
-for _ in range(n):
-    XYH.append(list(map(int, input().split())))
+s = input()
 
-X = Y = H = 0
-for i in range(101):
-    for j in range(101):
-        h = []
-        for xyh in XYH:
-            if xyh[2] > 0:
-                h.append(xyh[2] + abs(i - xyh[0]) + abs(j - xyh[1]))
-
-        height = 0
-        if len(list(set(h))) == 1: # 値の種類がひとつのみ
-            height = list(set(h))[0]
-        else:
-            continue
-
-        ans = []
-        for xyh in XYH:
-            if max(height - abs(i - xyh[0]) - abs(j - xyh[1]), 0) == xyh[2]:
-                ans.append(True)
-
-        if len(ans) == len(XYH):
-            X = i
-            Y = j
-            H = height
-            break
+while True:
+    if s[-5:] == 'dream':
+        s = s[:-5]
+    elif s[-7:] == 'dreamer':
+        s = s[:-7]
+    elif s[-5:] == 'erase':
+        s = s[:-5]
+    elif s[-6:] == 'eraser':
+        s = s[:-6]
     else:
-        continue
-
-print(X, Y, H)
+        print('NO')
+        break
+    if s == '':
+        print('YES')
+        break
 
 """
 # AtCoder用（標準入力受付け）
