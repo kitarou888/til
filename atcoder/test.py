@@ -3,16 +3,20 @@ T = []
 for _ in range(n):
     T.append(int(input()))
 T.sort()
+
 cnt = 0
+ans = 0
 i = 0
 while i < n:
-    pas = T[i:min(i + c, n)]
-    pas = list(filter(lambda x: x - T[i] <= k, pas))
-    num = len(pas)
-    i += num
-    cnt += 1
+    cnt = 1
+    tmp = T[i]
+    while cnt<c and i<n-1 and T[i+1]-tmp<=k:
+        cnt+=1
+        i+=1
+    ans+=1
+    i+=1
 
-print(cnt)
+print(ans)
 
 
 """
