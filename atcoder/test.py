@@ -1,20 +1,29 @@
-s = input()
+n = int(input())
+A = list(map(int, input().split()))
 
-while True:
-    if s[-5:] == 'dream':
-        s = s[:-5]
-    elif s[-7:] == 'dreamer':
-        s = s[:-7]
-    elif s[-5:] == 'erase':
-        s = s[:-5]
-    elif s[-6:] == 'eraser':
-        s = s[:-6]
-    else:
-        print('NO')
-        break
-    if s == '':
-        print('YES')
-        break
+cnt = 1
+i = 0
+while i < len(A) - 1:
+    if A[i + 1] > A[i]:
+        i += 1
+        while i < len(A) - 1:
+            if A[i + 1] >= A[i]:
+                i += 1
+            else:
+                cnt += 1
+                break
+    elif A[i + 1] < A[i]:
+        i += 1
+        while i < len(A) - 1:
+            if A[i + 1] <= A[i]:
+                i += 1
+            else:
+                cnt += 1
+                break
+    i += 1
+
+print(cnt)
+
 
 """
 # AtCoder用（標準入力受付け）
