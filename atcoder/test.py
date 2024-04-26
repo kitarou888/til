@@ -1,17 +1,36 @@
 n = int(input())
-min = 0
-for i in range(int(n ** 0.5), 0, -1):
-    j = n / i
-    if j.is_integer():
-        min = len(str(int(j)))
-        break
-print(min)
+XYH = []
+for _ in range(n):
+    XYH.append(list(map(int, input().split())))
 
+X = Y = H = 0
+for i in range(101):
+    for j in range(101):
+        h = []
+        for xyh in XYH:
+            if xyh[2] > 0:
+                h.append(xyh[2] + abs(i - xyh[0]) + abs(j - xyh[1]))
 
+        height = 0
+        if len(list(set(h))) == 1: # 値の種類がひとつのみ
+            height = list(set(h))[0]
+        else:
+            continue
 
+        ans = []
+        for xyh in XYH:
+            if max(height - abs(i - xyh[0]) - abs(j - xyh[1]), 0) == xyh[2]:
+                ans.append(True)
 
+        if len(ans) == len(XYH):
+            X = i
+            Y = j
+            H = height
+            break
+    else:
+        continue
 
-
+print(X, Y, H)
 
 """
 # AtCoder用（標準入力受付け）
