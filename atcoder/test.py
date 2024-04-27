@@ -1,22 +1,54 @@
-n, c, k = list(map(int, input().split()))
-T = []
-for _ in range(n):
-    T.append(int(input()))
-T.sort()
+n=int(input())
+A=list(map(int,input().split()))
 
-cnt = 0
-ans = 0
-i = 0
-while i < n:
-    cnt = 1
-    tmp = T[i]
-    while cnt<c and i<n-1 and T[i+1]-tmp<=k:
-        cnt+=1
-        i+=1
-    ans+=1
+# プラススタート
+ans1=0
+sign=False
+i=1
+sum=0
+if A[0]>0:
+    sum=A[0]
+elif A[0]<=0:
+    sum=1
+    ans1=1-A[0]
+
+while i<n:
+    sum+=A[i]
+    if sign:
+        if sum<=0:
+            ans1+=1-sum
+            sum=1
+    else:
+        if sum>=0:
+            ans1+=sum-(-1)
+            sum=-1
+    sign=not sign
+    i+=1
+# マイナススタート
+ans2=0
+sign=True
+i=1
+sum=0
+if A[0]>=0:
+    sum=-1
+    ans2=A[0]-(-1)
+elif A[0]<0:
+    sum=A[0]
+
+while i<n:
+    sum+=A[i]
+    if sign:
+        if sum<=0:
+            ans2+=1-sum
+            sum=1
+    else:
+        if sum>=0:
+            ans2+=sum-(-1)
+            sum=-1
+    sign=not sign
     i+=1
 
-print(ans)
+print(min(ans1,ans2))
 
 
 """
