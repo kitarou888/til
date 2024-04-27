@@ -1,12 +1,22 @@
 n=int(input())
-A=list(map(int,input().split()))
+TXY=[]
+for _ in range(n):
+    TXY.append(list(map(int,input().split())))
 
-m=[0]*100005
-for i in A:
-    m[i]+=1
-    m[i+1]+=1
-    m[i+2]+=1
-print(max(m))
+ans='Yes'
+for i in range(n):
+    if i==0:
+        if TXY[i][1]+TXY[i][2] not in list(range(TXY[i][0],0,-2)):
+            ans='No'
+            break
+    else:
+        if abs(TXY[i][1]-TXY[i-1][1])+abs(TXY[i][2]-TXY[i-1][2]) not in list(range(TXY[i][0]-TXY[i-1][0],0,-2)):
+            ans='No'
+            break
+print(ans)
+
+
+# print(list(range(6,0,-2)))
 
 """
 # AtCoder用（標準入力受付け）
