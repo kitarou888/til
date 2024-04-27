@@ -1,55 +1,12 @@
 n=int(input())
 A=list(map(int,input().split()))
 
-# プラススタート
-ans1=0
-sign=False
-i=1
-sum=0
-if A[0]>0:
-    sum=A[0]
-elif A[0]<=0:
-    sum=1
-    ans1=1-A[0]
-
-while i<n:
-    sum+=A[i]
-    if sign:
-        if sum<=0:
-            ans1+=1-sum
-            sum=1
-    else:
-        if sum>=0:
-            ans1+=sum-(-1)
-            sum=-1
-    sign=not sign
-    i+=1
-# マイナススタート
-ans2=0
-sign=True
-i=1
-sum=0
-if A[0]>=0:
-    sum=-1
-    ans2=A[0]-(-1)
-elif A[0]<0:
-    sum=A[0]
-
-while i<n:
-    sum+=A[i]
-    if sign:
-        if sum<=0:
-            ans2+=1-sum
-            sum=1
-    else:
-        if sum>=0:
-            ans2+=sum-(-1)
-            sum=-1
-    sign=not sign
-    i+=1
-
-print(min(ans1,ans2))
-
+m=[0]*100005
+for i in A:
+    m[i]+=1
+    m[i+1]+=1
+    m[i+2]+=1
+print(max(m))
 
 """
 # AtCoder用（標準入力受付け）
