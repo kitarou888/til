@@ -1,20 +1,19 @@
-A=sorted(list(map(int,input().split())))
-ans=0
-while True:
-    if A[0]<=A[1] and A[1]<A[2]:
-        A[0]+=1
-        A[1]+=1
-    elif A[0]<A[1]==A[2]:
-        A[0]+=2
-    elif A[0]>A[1]:
-        A[0]-=1
-    elif A[0]==A[1]==A[2]:
-        break
-    ans+=1
-
-print(ans)
-
-# print(list(range(6,0,-2)))
+n=int(input())
+A=[]
+B=[]
+for _ in range(n):
+    A.append(input())
+for _ in range(n):
+    B.append(input())
+A=list(A)
+B=list(B)
+I=J=9
+for i in range(n):
+    for j in range(n):
+        if A[i][j]!=B[i][j]:
+            I=i+1
+            J=j+1
+print(I,J)
 
 """
 # AtCoder用（標準入力受付け）
