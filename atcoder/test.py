@@ -1,20 +1,18 @@
-n=int(input())
-TXY=[]
-for _ in range(n):
-    TXY.append(list(map(int,input().split())))
+A=sorted(list(map(int,input().split())))
+ans=0
+while True:
+    if A[0]<=A[1] and A[1]<A[2]:
+        A[0]+=1
+        A[1]+=1
+    elif A[0]<A[1]==A[2]:
+        A[0]+=2
+    elif A[0]>A[1]:
+        A[0]-=1
+    elif A[0]==A[1]==A[2]:
+        break
+    ans+=1
 
-ans='Yes'
-for i in range(n):
-    if i==0:
-        if TXY[i][1]+TXY[i][2] not in list(range(TXY[i][0],0,-2)):
-            ans='No'
-            break
-    else:
-        if abs(TXY[i][1]-TXY[i-1][1])+abs(TXY[i][2]-TXY[i-1][2]) not in list(range(TXY[i][0]-TXY[i-1][0],0,-2)):
-            ans='No'
-            break
 print(ans)
-
 
 # print(list(range(6,0,-2)))
 
