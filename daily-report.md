@@ -307,3 +307,4 @@
 4/25(木) けんちょん Qiita 過去問 10 問（8 問目）
 5/1(水) Rails チュートリアル輪読会〜2.3.1
 5/2(木) ブルーベリー本輪読会（6 章力試し完）、りあクト ①、Software Design2024 年 5 月 TypeScript 特集
+5/3(金) Software Design2024 年 5 月 TypeScript 特集 3-5 章
