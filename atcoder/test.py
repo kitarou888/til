@@ -1,19 +1,14 @@
-n=int(input())
-A=[]
-B=[]
+n = int(input())
+AB = []
 for _ in range(n):
-    A.append(input())
-for _ in range(n):
-    B.append(input())
-A=list(A)
-B=list(B)
-I=J=9
-for i in range(n):
-    for j in range(n):
-        if A[i][j]!=B[i][j]:
-            I=i+1
-            J=j+1
-print(I,J)
+    AB.append(list(map(int, input().split())))
+
+diff_s_to_m = [i[1] - i[0] for i in AB]
+max_s_to_h = max(diff_s_to_m)
+S = [i[0] for i in AB]
+
+print(sum(S) + max_s_to_h)
+
 
 """
 # AtCoder用（標準入力受付け）
