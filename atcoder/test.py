@@ -1,13 +1,18 @@
-n = int(input())
-AB = []
-for _ in range(n):
-    AB.append(list(map(int, input().split())))
+n, k = list(map(int, input().split()))
+P = list(map(int, input().split()))
 
-diff_s_to_m = [i[1] - i[0] for i in AB]
-max_s_to_h = max(diff_s_to_m)
-S = [i[0] for i in AB]
+ans = n
+memo = [0] * n
+for i in range(n):
+    memo[P[i]-1] = i+1
 
-print(sum(S) + max_s_to_h)
+for i in range(n-k+1):
+    ext = memo[i:i+k]
+    max_v = max(ext)
+    min_v = min(ext)
+    ans = min(ans, max_v - min_v)
+
+print(ans)
 
 
 """
