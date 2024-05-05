@@ -1,6 +1,14 @@
-n,a,b = map(int, input().split())
+n = int(input())
 
-print('Alice' if abs(a-b) % 2 == 0 else 'Borys')
+d = {}
+for _ in range(n):
+    key = input()
+    if key in d:
+        d.pop(key)
+    else:
+        d[key] = 1
+
+print(len(d))
 
 """
 # AtCoder用（標準入力受付け）
