@@ -1,18 +1,10 @@
-n, k = list(map(int, input().split()))
-P = list(map(int, input().split()))
+n = int(input())
+A = list(map(int, input().split()))
 
-ans = n
-memo = [0] * n
-for i in range(n):
-    memo[P[i]-1] = i+1
+P = [i % 2 for i in A]
+odd_cnt = P.count(1)
 
-for i in range(n-k+1):
-    ext = memo[i:i+k]
-    max_v = max(ext)
-    min_v = min(ext)
-    ans = min(ans, max_v - min_v)
-
-print(ans)
+print('YES' if odd_cnt % 2 == 0 else 'NO')
 
 
 """
@@ -39,14 +31,19 @@ a = [1, 6] + [1, 8]
 
 # a の i 番目の位置 (a[i-1] と a[i] の間) に x を挿入
 a.insert(i, x)
+
 # リスト a と整数 i に対し、 a の i 番目の要素を取得しながら削除
 a.pop(i)
+
 # x が a の中に 1 個以上存在するかを判定
 x in a
+
 # x が a の中に何個存在するかを取得
 a.count(x)
+
 # a の中に x が出現する最初の位置を取得
 a.index(x)
+
 # リストをディープコピー
 b = a.copy()
 
@@ -70,8 +67,10 @@ print("AAAAA".replace("AA", "X"))
 
 ★Python の文字列は一度作ると変更することができない→一度listにする。
 a = list(s)
+
 # a の 0 番目の要素を "M" に変更する
 a[0] = "M"
+
 # a の要素をつなげて出力する
 print("".join(a))
 
@@ -89,7 +88,7 @@ res2 = any([v % 2 == 0 for v in l]) # l に偶数が含まれるか？
 # リストのインデックスと値を同時に取得
 for i,v in enumerate(l)
 
-# リスト内包表記（all()、any()、map的な）
+# リスト内包表記（all()、any()、map）
 all([i > 2 for i in l])
 any([i > 2 for i in l])
 [i * 2 for i in [1, 6, 9]]
