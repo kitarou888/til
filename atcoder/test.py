@@ -1,11 +1,6 @@
-n = int(input())
-A = list(map(int, input().split()))
+n,a,b = map(int, input().split())
 
-P = [i % 2 for i in A]
-odd_cnt = P.count(1)
-
-print('YES' if odd_cnt % 2 == 0 else 'NO')
-
+print('Alice' if abs(a-b) % 2 == 0 else 'Borys')
 
 """
 # AtCoder用（標準入力受付け）
