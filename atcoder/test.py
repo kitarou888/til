@@ -6,31 +6,14 @@ for _ in range(H):
     S.append(list('.'+input()+'.'))
 S.append(list('.' * (W + 2)))
 
-# print(S)
-
-for i in range(len(S)):
-    for j in range(len(S[i])):
-        if S[i][j] == '.':
-            S[i][j] = 0
-
-# print(S)
-
+ans = 'Yes'
 for i in range(1, len(S) - 1):
     for j in range(1, len(S[i]) - 1):
         if S[i][j] == '#':
-            for x in range(i-1, i+2):
-                for y in range(j-1, j+2):
-                    if S[x][y] != '#':
-                        S[x][y] += 1
-ans = []
-for s in S[1:-1]:
-    ans.append(s[1:-1])
-for i in range(len(ans)):
-    for j in range(len(ans[i])):
-        ans[i][j] = str(ans[i][j])
-for i in ans:
-    print(''.join(i))
+            if S[i-1][j] == '.' and S[i][j-1] == '.' and S[i+1][j] == '.' and S[i][j+1] == '.':
+                ans = 'No'
 
+print(ans)
 
 """
 # AtCoder用（標準入力受付け）
