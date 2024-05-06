@@ -1,15 +1,18 @@
 n = int(input())
 A = []
-for _ in range(n):
-    A.append(int(input()))
-ind = 0
-for i in range(n+5):
-    ind = A[ind] - 1
-    if ind == 1:
-        print(i+1)
-        break
-else:
-    print(-1)
+for _ in range(2):
+    A.append(list(map(int, input().split())))
+
+for i in range(1, n):
+    A[0][i] += A[0][i-1]
+    A[1][i] += A[1][i-1]
+
+ans = A[0][0] + A[1][n-1]
+for i in range(1, n):
+    if ans < A[0][i] + A[1][n-1] - A[1][i-1]:
+        ans = A[0][i] + A[1][n-1] - A[1][i-1]
+print(ans)
+
 
 """
 # AtCoder用（標準入力受付け）
