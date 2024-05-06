@@ -1,7 +1,8 @@
-n = int(input())
-ans = 1
-for i in range(n):
-    ans = (ans * (i + 1)) % 1000000007
+n, k = map(int, input().split())
+
+ans = k
+for i in range(1, n):
+    ans *= k - 1
 
 print(ans)
 
