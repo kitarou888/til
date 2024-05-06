@@ -1,18 +1,27 @@
 n = int(input())
-A = []
-for _ in range(2):
-    A.append(list(map(int, input().split())))
+s = input()
+
+Q = [0] * n
+if s[0] == 'W':
+    Q[0] = -1
+else:
+    Q[0] = 1
 
 for i in range(1, n):
-    A[0][i] += A[0][i-1]
-    A[1][i] += A[1][i-1]
+    if s[i] == 'W':
+        Q[i] = Q[i-1] - 1
+    else:
+        Q[i] = Q[i-1] + 1
 
-ans = A[0][0] + A[1][n-1]
-for i in range(1, n):
-    if ans < A[0][i] + A[1][n-1] - A[1][i-1]:
-        ans = A[0][i] + A[1][n-1] - A[1][i-1]
-print(ans)
+idx = Q.index(max(Q))
 
+Q_l = list(s[:idx])
+Q_r = list(s[idx+1:])
+
+cnt_l = Q_l.count('W')
+cnt_r = Q_r.count('E')
+
+print(cnt_l + cnt_r)
 
 """
 # AtCoder用（標準入力受付け）
