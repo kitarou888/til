@@ -1,19 +1,8 @@
-H, W = map(int, input().split())
-S = []
+a,b,c,d = map(int, input().split())
 
-S.append(list('.' * (W + 2)))
-for _ in range(H):
-    S.append(list('.'+input()+'.'))
-S.append(list('.' * (W + 2)))
-
-ans = 'Yes'
-for i in range(1, len(S) - 1):
-    for j in range(1, len(S[i]) - 1):
-        if S[i][j] == '#':
-            if S[i-1][j] == '.' and S[i][j-1] == '.' and S[i+1][j] == '.' and S[i][j+1] == '.':
-                ans = 'No'
-
-print(ans)
+start = max(a,c)
+end = min(b,d)
+print(max(end - start, 0))
 
 """
 # AtCoder用（標準入力受付け）
