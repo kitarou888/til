@@ -1,8 +1,10 @@
-a,b,c,d = map(int, input().split())
+n = int(input())
+ans = 1
+for i in range(n):
+    ans = (ans * (i + 1)) % 1000000007
 
-start = max(a,c)
-end = min(b,d)
-print(max(end - start, 0))
+print(ans)
+
 
 """
 # AtCoder用（標準入力受付け）
