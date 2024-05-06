@@ -1,8 +1,10 @@
-a,b,x = map(int, input().split())
-b_mod = b // x
-a_mod = (a-1) // x
+a,b,c = map(int, input().split())
+ans = 'NO'
+for i in range(1, b + 1):
+    if (a * i) % b == c:
+        ans = 'YES'
 
-print(b_mod - a_mod)
+print(ans)
 
 """
 # AtCoder用（標準入力受付け）
