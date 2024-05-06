@@ -1,11 +1,8 @@
-n, k = map(int, input().split())
+a,b,x = map(int, input().split())
+b_mod = b // x
+a_mod = (a-1) // x
 
-ans = k
-for i in range(1, n):
-    ans *= k - 1
-
-print(ans)
-
+print(b_mod - a_mod)
 
 """
 # AtCoder用（標準入力受付け）
