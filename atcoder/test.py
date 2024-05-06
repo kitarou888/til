@@ -1,27 +1,38 @@
-n = int(input())
-s = input()
+A,B,C,D = map(int, list(input()))
 
-Q = [0] * n
-if s[0] == 'W':
-    Q[0] = -1
-else:
-    Q[0] = 1
+a=A
+b=B
+c=C
+d=D
+aa=bb=cc=dd=0
+for j in range(2):
+    for k in range(2):
+        for l in range(2):
+            if j == 0:
+                b = -B
+            else:
+                b = B
+            if k == 0:
+                c = -C
+            else:
+                c = C
+            if l == 0:
+                d = -D
+            else:
+                d = D
+            if a+b+c+d == 7:
+                aa = a
+                bb = b
+                cc = c
+                dd = d
 
-for i in range(1, n):
-    if s[i] == 'W':
-        Q[i] = Q[i-1] - 1
-    else:
-        Q[i] = Q[i-1] + 1
+op1 = '+' if bb >= 0 else '-'
+op2 = '+' if cc >= 0 else '-'
+op3 = '+' if dd >= 0 else '-'
 
-idx = Q.index(max(Q))
+print(str(aa)+op1+str(abs(bb))+op2+str(abs(cc))+op3+str(abs(dd))+'=7')
 
-Q_l = list(s[:idx])
-Q_r = list(s[idx+1:])
 
-cnt_l = Q_l.count('W')
-cnt_r = Q_r.count('E')
-
-print(cnt_l + cnt_r)
 
 """
 # AtCoder用（標準入力受付け）
