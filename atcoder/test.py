@@ -1,14 +1,36 @@
-n = int(input())
+H, W = map(int, input().split())
+S = []
 
-d = {}
-for _ in range(n):
-    key = input()
-    if key in d:
-        d.pop(key)
-    else:
-        d[key] = 1
+S.append(list('.' * (W + 2)))
+for _ in range(H):
+    S.append(list('.'+input()+'.'))
+S.append(list('.' * (W + 2)))
 
-print(len(d))
+# print(S)
+
+for i in range(len(S)):
+    for j in range(len(S[i])):
+        if S[i][j] == '.':
+            S[i][j] = 0
+
+# print(S)
+
+for i in range(1, len(S) - 1):
+    for j in range(1, len(S[i]) - 1):
+        if S[i][j] == '#':
+            for x in range(i-1, i+2):
+                for y in range(j-1, j+2):
+                    if S[x][y] != '#':
+                        S[x][y] += 1
+ans = []
+for s in S[1:-1]:
+    ans.append(s[1:-1])
+for i in range(len(ans)):
+    for j in range(len(ans[i])):
+        ans[i][j] = str(ans[i][j])
+for i in ans:
+    print(''.join(i))
+
 
 """
 # AtCoder用（標準入力受付け）
