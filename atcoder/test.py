@@ -1,47 +1,24 @@
-n = int(input())
-AC = []
-for i in range(n):
-    AC.append(list(map(int, input().split())) + [i+1])
+s = list(map(int, list(input())))
 
-AC.sort()
-# print(AC)
-
-ans = []
-ans.append(AC[0])
-# print(ans)
-
-for i in range(1, len(AC)):
-    # print(i)
-    while len(ans) > 0 and ans[-1][1] > AC[i][1]:
-        del ans[-1]
-    ans.append(AC[i])
+n = len(s) - 1
+sum = 0
+for bit in range(2 ** n):
+    ans = 0
+    tmp = s[0]
+    for i in range(n):
+        # print(bit, i)
+        if (bit & (1 << i)):
+            ans = ans + tmp
+            tmp = s[i+1]
+        else:
+            tmp = tmp * 10 + s[i+1]
+        # print(ans, tmp)
+    ans += tmp
     # print(ans)
+    sum += ans
+    # print(sum)
 
-print(len(ans))
-ans2 = [i[2] for i in ans]
-ans2.sort()
-ans3 = [str(i) for i in ans2]
-
-print(' '.join(ans3))
-
-
-#     print(len(ans) > 0 and (sorted[i][1] < ans[-1][1]))
-#     print(sorted[i][1])
-#     print(ans[-1][1])
-#     while len(ans) > 0 and (sorted[i][1] < ans[-1][1]):
-#         ans = ans.pop(-1)
-#     ans.append(sorted[i])
-#     print('ans',ans)
-#     print('sorted',sorted)
-# # ans.append(sorted[-1][2])
-# ans.sort()
-# # print(len(ans))
-# # print(" ".join(map(str, ans)))
-
-# 10 10
-# 20 20
-# 30 1
-# 40 40
+print(sum)
 
 """
 # AtCoder用（標準入力受付け）
