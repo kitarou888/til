@@ -1,24 +1,19 @@
-s = list(map(int, list(input())))
+import bisect
 
-n = len(s) - 1
-sum = 0
-for bit in range(2 ** n):
-    ans = 0
-    tmp = s[0]
-    for i in range(n):
-        # print(bit, i)
-        if (bit & (1 << i)):
-            ans = ans + tmp
-            tmp = s[i+1]
-        else:
-            tmp = tmp * 10 + s[i+1]
-        # print(ans, tmp)
-    ans += tmp
-    # print(ans)
-    sum += ans
-    # print(sum)
+n = int(input())
+A = list(map(int, input().split()))
+A.sort()
+q = int(input())
+X = []
+for _ in range(q):
+    X.append(int(input()))
 
-print(sum)
+
+# print(sorted(A))
+for x in X:
+    print(bisect.bisect_left(A, x))
+
+
 
 """
 # AtCoder用（標準入力受付け）
