@@ -1,19 +1,49 @@
-import bisect
+# n, m, k = map(int, input().split())
+# CAR = []
+# for _ in range(m):
+#     CAR.append(list(input().split()))
 
-n = int(input())
-A = list(map(int, input().split()))
-A.sort()
-q = int(input())
-X = []
-for _ in range(q):
-    X.append(int(input()))
+# print(CAR)
 
+# C = []
+# A = []
+# R = []
+# for car in CAR:
+#     C.append(int(car[0]))
+#     A.append(list(map(int, car[1:-1])))
+#     R.append(car[-1])
 
-# print(sorted(A))
-for x in X:
-    print(bisect.bisect_left(A, x))
+# print(C)
+# print(A)
+# print(R)
 
+import math
+N, K = map(int,input().split())
+A = list(map(int,input().split()))
+step_size = math.lcm(*A)
+sum_per_step = 0
+for a in A:
+    sum_per_step += step_size // a
 
+def check(x):
+    sum = 0
+    for a in A:
+        sum += x // a
+    if (sum >= K):
+        return True
+    return False
+
+left = 1
+right = 1000000000
+while left < right:
+    mid = (left + right) // 2
+    ans = check(mid)
+    if ans:
+        right = mid
+    else:
+        left = mid + 1
+
+print(left)
 
 """
 # AtCoder用（標準入力受付け）
