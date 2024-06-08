@@ -1,37 +1,58 @@
-N, K = map(int, input().split())
-A = list(map(int, input().split()))
+N = int(input())
+def f(n):
+    if n == 0:
+        return ['#']
+    sub = f(n-1)
+    sub_size = len(sub) # n=2なら3x3の二次元配列なので3になる
+    ret = [['.'] * 3**n for i in range(3**n)]
+    for I in range(3):
+        for J in range(3):
+            if not (I == 1 and J == 1):
+                for i in range(sub_size):
+                    for j in range(sub_size):
+                        ret[sub_size * I + i][sub_size * J + j] = sub[i][j]
 
-A_sum = [A[0]]
-for i in range(1, N):
-    A_sum.append(A_sum[i-1] + A[i])
+    return ret
 
-cnt = 0
-r = 0
-for i in range(N):
-    while r < N:
-        check = A_sum[r] - A_sum[i-1] if i > 0 else A_sum[r]
-        if check > K:
-            break
-        r += 1
-    cnt += r - i
+ans = f(N)
+for a in ans:
+    print(' '.join(a))
 
-print(cnt)
+
 
 """
-# AtCoder用（標準入力受付け）
-s = input() # str型で受け取る
-n = int(input()) # int型で受け取る
-f = # float型(小数)で受け取る
-n, k = map(int, input().split()) # 複数の整数を受け取る
-arr = list(map(int, input().split())) # list型で整数を受け取る
+■入出力（AtCoder用）
+
+S = input() # str型で受け取る
+N = int(input()) # int型で受け取る
+N, K = map(int, input().split()) # 複数の整数を受け取る
+A = list(map(int, input().split())) # list型で整数を受け取る
+
 # N行データを受け取る
-N, M = map(int, input().split())
 A = []
 for _ in range(M):
     A.append(int(input()))
 
-print("{} {}".format(a + b + c, s))
-print(a + b + c, s) は同じ
+# a の要素をつなげて出力する 注）aをstr(a)に予め変換すること
+print("".join(a))
+
+
+■リスト操作
+
+# ２次元配列の初期化（[[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]）
+A = [[0] * 4 for i in range(3)]
+
+l = [1, 3, -5, 2]
+res = all([v > 0 for v in l])    # l に含まれる値が全て正か？
+res2 = any([v % 2 == 0 for v in l])    # l に偶数が含まれるか？
+
+# リストのインデックスと値を同時に取得
+for i,v in enumerate(l)
+
+# リスト内包表記（all()、any()、map）
+all([i > 2 for i in l])
+any([i > 2 for i in l])
+[i * 2 for i in [1, 6, 9]]
 
 # リスト [0, 1, 2, 3, 4] を作る
 a = list(range(5))
@@ -57,8 +78,15 @@ a.index(x)
 # リストをディープコピー
 b = a.copy()
 
-# リスト a を文字列 " + " で結合（Rubyと前後が逆なことに注意）
-print(" + ".join(a))
+
+
+■文字列操作
+
+# a の 0 番目の要素を "M" に変更する
+a[0] = "M"
+
+print("{} {}".format(a + b + c, s))
+print(a + b + c, s) は同じ
 
 # s を逆順にした文字列 "EDCBA" を出力
 print(s[::-1])
@@ -78,12 +106,10 @@ print("AAAAA".replace("AA", "X"))
 ★Python の文字列は一度作ると変更することができない→一度listにする。
 a = list(s)
 
-# a の 0 番目の要素を "M" に変更する
-a[0] = "M"
 
-# a の要素をつなげて出力する
-print("".join(a))
 
+
+■その他
 ord(c)・・・文字をコードポイントに
 chr(x)・・・コードポイントを文字に
 
@@ -91,19 +117,9 @@ divmod(a, b)・・・aをbで割った商と余りを返す
 pow(a, b)・・・aのb乗を返す  ★「**」を使うより高速
 pow(a, b, mod)・・・aのb乗をmodで割った余りを返す  ★「%」を使うより高速
 
-l = [1, 3, -5, 2]
-res = all([v > 0 for v in l]) # l に含まれる値が全て正か？
-res2 = any([v % 2 == 0 for v in l]) # l に偶数が含まれるか？
-
-# リストのインデックスと値を同時に取得
-for i,v in enumerate(l)
-
-# リスト内包表記（all()、any()、map）
-all([i > 2 for i in l])
-any([i > 2 for i in l])
-[i * 2 for i in [1, 6, 9]]
-
 """
+
+
 
 
 
