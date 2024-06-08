@@ -1,63 +1,15 @@
-# n, m, k = map(int, input().split())
-# CAR = []
-# for _ in range(m):
-#     CAR.append(list(input().split()))
+N, K = map(int, input().split())
+A = list(map(int, input().split()))
 
-# print(CAR)
-
-# C = []
-# A = []
-# R = []
-# for car in CAR:
-#     C.append(int(car[0]))
-#     A.append(list(map(int, car[1:-1])))
-#     R.append(car[-1])
-
-# print(C)
-# print(A)
-# print(R)
-
-# import math
-# N, K = map(int,input().split())
-# A = list(map(int,input().split()))
-# step_size = math.lcm(*A)
-# sum_per_step = 0
-# for a in A:
-#     sum_per_step += step_size // a
-
-# def check(x):
-#     sum = 0
-#     for a in A:
-#         sum += x // a
-#     if (sum >= K):
-#         return True
-#     return False
-
-# left = 1
-# right = 1000000000
-# while left < right:
-#     mid = (left + right) // 2
-#     ans = check(mid)
-#     if ans:
-#         right = mid
-#     else:
-#         left = mid + 1
-
-# print(left)
-
-N = int(input())
-left = 0
-right = 100
-
-while left < right:
-    mid = (left + right) / 2
-    if N - 0.001 < mid ** 3 + mid < N + 0.001:
-        break
-    if N - 0.001 >= mid ** 3 + mid:
-        left = mid
-    else:
-        right = mid
-print(mid)
+cnt = 0
+r = 1
+for i in range(len(A)):
+    while r < len(A):
+        if A[r] - A[i] > K:
+            break
+        r += 1
+    cnt += r - (i + 1)
+print(cnt)
 
 """
 # AtCoder用（標準入力受付け）
