@@ -1,14 +1,20 @@
 N, K = map(int, input().split())
 A = list(map(int, input().split()))
 
+A_sum = [A[0]]
+for i in range(1, N):
+    A_sum.append(A_sum[i-1] + A[i])
+
 cnt = 0
-r = 1
-for i in range(len(A)):
-    while r < len(A):
-        if A[r] - A[i] > K:
+r = 0
+for i in range(N):
+    while r < N:
+        check = A_sum[r] - A_sum[i-1] if i > 0 else A_sum[r]
+        if check > K:
             break
         r += 1
-    cnt += r - (i + 1)
+    cnt += r - i
+
 print(cnt)
 
 """
