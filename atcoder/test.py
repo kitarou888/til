@@ -1,23 +1,7 @@
 N = int(input())
-def f(n):
-    if n == 0:
-        return ['#']
-    sub = f(n-1)
-    sub_size = len(sub) # n=2なら3x3の二次元配列なので3になる
-    ret = [['.'] * 3**n for i in range(3**n)]
-    for I in range(3):
-        for J in range(3):
-            if not (I == 1 and J == 1):
-                for i in range(sub_size):
-                    for j in range(sub_size):
-                        ret[sub_size * I + i][sub_size * J + j] = sub[i][j]
-
-    return ret
-
-ans = f(N)
-for a in ans:
-    print(' '.join(a))
-
+MOD = 998244353
+p10 = pow(10, len(str(N)), MOD)
+print(N * (1 - pow(p10, N, MOD)) * pow(1 - p10, -1, MOD) % MOD)
 
 
 """
