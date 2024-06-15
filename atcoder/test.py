@@ -1,7 +1,48 @@
-N = int(input())
-MOD = 998244353
-p10 = pow(10, len(str(N)), MOD)
-print(N * (1 - pow(p10, N, MOD)) * pow(1 - p10, -1, MOD) % MOD)
+# N, M = map(int, input().split())
+# S = []
+# for _ in range(N):
+#     S.append(input())
+# ans = N
+# for i in range(1, N):
+#     if i == 1:
+#         for j in range(N):
+#     elif i == 2:
+
+#     elif i == 3:
+
+#     elif i == 4:
+
+#     elif i == 5:
+
+N, M = map(int, input().split())
+A = sorted(list(map(int, input().split())))
+B = sorted(list(map(int, input().split())))
+sum = 0
+a = b = 0
+# print(A,B)
+while b < M and a < N:
+    if B[b] > A[a]:
+        a += 1
+        if a > N - 1:
+            sum = -1
+            break
+    else:
+        sum += A[a]
+        a += 1
+        b += 1
+        if a > N - 1 and b <= M - 1:
+            sum = -1
+            break
+    # print(a,b,sum)
+
+print(sum)
+
+# for i in range(B):
+#     for j in range(A):
+#         if B[i] > A[j]:
+#             continue
+#         else:
+#             sum += A[j]
 
 
 """
