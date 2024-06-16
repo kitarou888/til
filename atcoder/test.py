@@ -1,48 +1,48 @@
-# N, M = map(int, input().split())
-# S = []
-# for _ in range(N):
-#     S.append(input())
-# ans = N
-# for i in range(1, N):
-#     if i == 1:
-#         for j in range(N):
-#     elif i == 2:
-
-#     elif i == 3:
-
-#     elif i == 4:
-
-#     elif i == 5:
-
 N, M = map(int, input().split())
-A = sorted(list(map(int, input().split())))
-B = sorted(list(map(int, input().split())))
-sum = 0
-a = b = 0
-# print(A,B)
-while b < M and a < N:
-    if B[b] > A[a]:
-        a += 1
-        if a > N - 1:
-            sum = -1
-            break
-    else:
-        sum += A[a]
-        a += 1
-        b += 1
-        if a > N - 1 and b <= M - 1:
-            sum = -1
-            break
-    # print(a,b,sum)
+S = []
+for _ in range(N):
+    S.append(list(input()))
+ans = N
 
-print(sum)
+# print(S)
 
-# for i in range(B):
-#     for j in range(A):
-#         if B[i] > A[j]:
-#             continue
-#         else:
-#             sum += A[j]
+for bit in range(1 << N):
+    str = ['x'] * M
+    cnt = 0
+    for i in range(N):
+        if (bit & (1 << i)):
+            cnt += 1
+            for m in range(M):
+                if S[i][m] == 'o':
+                    str[m] = 'o'
+    if str == ['o'] * M:
+        ans = min(ans, cnt)
+
+print(ans)
+
+
+# N, M = map(int, input().split())
+# A = sorted(list(map(int, input().split())))
+# B = sorted(list(map(int, input().split())))
+# sum = 0
+# a = b = 0
+# # print(A,B)
+# while b < M and a < N:
+#     if B[b] > A[a]:
+#         a += 1
+#         if a > N - 1:
+#             sum = -1
+#             break
+#     else:
+#         sum += A[a]
+#         a += 1
+#         b += 1
+#         if a > N - 1 and b <= M - 1:
+#             sum = -1
+#             break
+#     # print(a,b,sum)
+
+# print(sum)
 
 
 """
