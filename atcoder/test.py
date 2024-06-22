@@ -1,33 +1,15 @@
-N, M = map(int, input().split())
-A = []
-B = []
-C = []
-D = []
-for _ in range(M):
-    a, b = map(int, input().split())
-    A.append(a)
-    B.append(b)
-K = int(input())
-for _ in range(K):
-    c, d = map(int, input().split())
-    C.append(c)
-    D.append(d)
+S = list(map(int, input().split()))
+T = list(map(int, input().split()))
 
-# print(A, B, C, D)
-ans = 0
-for bit in range(1 << K):
-    sum = 0
-    P = []
-    for i in range(K):
-        if bit & (1 << i):
-            P.append(C[i])
-        else:
-            P.append(D[i])
-    # print(list(set(P)))
-    for i in range(M):
-        if A[i] in P and B[i] in P:
-            sum += 1
-        ans = max(ans, sum)
+ans = abs(S[1] - T[1])
+is_even = (S[0] + S[1]) % 2 == 0
+is_left = T[0] < S[0]
+
+if abs(S[0] - T[0]) > abs(S[1] - T[1]):
+    if (is_even and is_left) or (not(is_even) and not(is_left)):
+        ans += (abs(S[0] - T[0]) - abs(S[1] - T[1]) + 1) // 2
+    else:
+        ans += (abs(S[0] - T[0]) - abs(S[1] - T[1])) // 2
 
 print(ans)
 
