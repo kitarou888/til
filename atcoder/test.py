@@ -1,49 +1,35 @@
 N, M = map(int, input().split())
-S = []
-for _ in range(N):
-    S.append(list(input()))
-ans = N
+A = []
+B = []
+C = []
+D = []
+for _ in range(M):
+    a, b = map(int, input().split())
+    A.append(a)
+    B.append(b)
+K = int(input())
+for _ in range(K):
+    c, d = map(int, input().split())
+    C.append(c)
+    D.append(d)
 
-# print(S)
-
-for bit in range(1 << N):
-    str = ['x'] * M
-    cnt = 0
-    for i in range(N):
-        if (bit & (1 << i)):
-            cnt += 1
-            for m in range(M):
-                if S[i][m] == 'o':
-                    str[m] = 'o'
-    if str == ['o'] * M:
-        ans = min(ans, cnt)
+# print(A, B, C, D)
+ans = 0
+for bit in range(1 << K):
+    sum = 0
+    P = []
+    for i in range(K):
+        if bit & (1 << i):
+            P.append(C[i])
+        else:
+            P.append(D[i])
+    # print(list(set(P)))
+    for i in range(M):
+        if A[i] in P and B[i] in P:
+            sum += 1
+        ans = max(ans, sum)
 
 print(ans)
-
-
-# N, M = map(int, input().split())
-# A = sorted(list(map(int, input().split())))
-# B = sorted(list(map(int, input().split())))
-# sum = 0
-# a = b = 0
-# # print(A,B)
-# while b < M and a < N:
-#     if B[b] > A[a]:
-#         a += 1
-#         if a > N - 1:
-#             sum = -1
-#             break
-#     else:
-#         sum += A[a]
-#         a += 1
-#         b += 1
-#         if a > N - 1 and b <= M - 1:
-#             sum = -1
-#             break
-#     # print(a,b,sum)
-
-# print(sum)
-
 
 """
 ■入出力（AtCoder用）
