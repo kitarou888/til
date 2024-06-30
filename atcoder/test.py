@@ -1,27 +1,28 @@
 import bisect
 n, k = map(int, input().split())
 A = list(map(int, input().split()))
-B = list(map(int, input().split()))
-C = list(map(int, input().split()))
-D = list(map(int, input().split()))
+Aleft = A[:n//2]
+Aright = A[n//2:]
 
 P = []
 Q = []
-for a in A:
-    for b in B:
-        P.append(a + b)
-for c in C:
-    for d in D:
-        Q.append(c + d)
+for bit in range(1 << n//2):
+    sum = 0
+    for i in range(n//2):
+        if (bit & 1 << i):
+            sum += Aleft[i]
+    P.append(sum)
+for bit in range(1 << n - n//2):
+    sum = 0
+    for i in range(n - n//2):
+        if (bit & 1 << i):
+            sum += Aright[i]
+    Q.append(sum)
 Q.sort()
-
-# print(P, Q)
 ans = 'No'
 for p in P:
     index = bisect.bisect_left(Q, k - p)
-    # print(index)
-    # print(index, p, Q[index])
-    if index < n ** 2 and Q[index] == k - p:
+    if index < len(Q) and Q[index] == k - p:
         ans = 'Yes'
 print(ans)
 
