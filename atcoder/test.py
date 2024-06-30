@@ -1,15 +1,44 @@
-import bisect
 n = int(input())
 A = list(map(int, input().split()))
+W = list(map(int, input().split()))
+# print(A,W)
+C = [[] for _ in range(n)]
 
-Asort = sorted(list(set(A)))
+for i in range(n):
+    C[A[i]-1].append(W[i])
+# print(C)
+ans = 0
+for c in C:
+    if len(c) > 1:
+        ans += sum(c) - max(c)
 
-ans = []
-for a in A:
-    index = bisect.bisect_left(Asort, a) + 1
-    ans.append(str(index))
+print(ans)
 
-print(' '.join(ans))
+# def convert_1d_to_2d(l, cols):
+#     return [l[i:i + cols] for i in range(0, len(l), cols)]
+
+# S, T = input().split()
+# S = list(S)
+
+# ans = 'No'
+
+# for i in range(1, len(S)): #1~6
+#     Sconv = convert_1d_to_2d(S, i)
+#     print(Sconv)
+#     for j in range(1, i+1):
+#         r = 0
+#         str = ''
+#         while r < len(S):
+#             # print(r, i, str)
+#             str += S[r][j]
+#             r += i
+#         if str == T:
+#             ans = 'Yes'
+#         print(str)
+# print(ans)
+
+
+
 
 
 """
