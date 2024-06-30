@@ -1,17 +1,31 @@
-S = list(map(int, input().split()))
-T = list(map(int, input().split()))
+import bisect
+n, k = map(int, input().split())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
+C = list(map(int, input().split()))
+D = list(map(int, input().split()))
 
-ans = abs(S[1] - T[1])
-is_even = (S[0] + S[1]) % 2 == 0
-is_left = T[0] < S[0]
+P = []
+Q = []
+for a in A:
+    for b in B:
+        P.append(a + b)
+for c in C:
+    for d in D:
+        Q.append(c + d)
+Q.sort()
 
-if abs(S[0] - T[0]) > abs(S[1] - T[1]):
-    if (is_even and is_left) or (not(is_even) and not(is_left)):
-        ans += (abs(S[0] - T[0]) - abs(S[1] - T[1]) + 1) // 2
-    else:
-        ans += (abs(S[0] - T[0]) - abs(S[1] - T[1])) // 2
-
+# print(P, Q)
+ans = 'No'
+for p in P:
+    index = bisect.bisect_left(Q, k - p)
+    # print(index)
+    # print(index, p, Q[index])
+    if index < n ** 2 and Q[index] == k - p:
+        ans = 'Yes'
 print(ans)
+
+
 
 """
 ■入出力（AtCoder用）
