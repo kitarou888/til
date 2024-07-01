@@ -1,43 +1,21 @@
-n = int(input())
-A = list(map(int, input().split()))
-W = list(map(int, input().split()))
-# print(A,W)
-C = [[] for _ in range(n)]
+import bisect
 
+n, t = map(int, input().split())
+S = input()
+X = list(map(int, input().split()))
+
+lefts = []
 for i in range(n):
-    C[A[i]-1].append(W[i])
-# print(C)
+    if S[i] == '0':
+        lefts.append(X[i])
+lefts.sort()
+
 ans = 0
-for c in C:
-    if len(c) > 1:
-        ans += sum(c) - max(c)
+for i in range(n):
+    if S[i] == '1':
+        ans += bisect.bisect_right(lefts, X[i] + 2 * t) - bisect.bisect_right(lefts, X[i])
 
 print(ans)
-
-# def convert_1d_to_2d(l, cols):
-#     return [l[i:i + cols] for i in range(0, len(l), cols)]
-
-# S, T = input().split()
-# S = list(S)
-
-# ans = 'No'
-
-# for i in range(1, len(S)): #1~6
-#     Sconv = convert_1d_to_2d(S, i)
-#     print(Sconv)
-#     for j in range(1, i+1):
-#         r = 0
-#         str = ''
-#         while r < len(S):
-#             # print(r, i, str)
-#             str += S[r][j]
-#             r += i
-#         if str == T:
-#             ans = 'Yes'
-#         print(str)
-# print(ans)
-
-
 
 
 
@@ -138,6 +116,7 @@ divmod(a, b)・・・aをbで割った商と余りを返す
 pow(a, b)・・・aのb乗を返す  ★「**」を使うより高速
 pow(a, b, mod)・・・aのb乗をmodで割った余りを返す  ★「%」を使うより高速
 
+exit()・・・プログラムを強制終了させる
 """
 
 
