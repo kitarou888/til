@@ -327,3 +327,5 @@
 6/24(月) グループコーチング、Docker&Kubernetes のきほんのきほん 6 章
 6/25(火) Docker&Kubernetes のきほんのきほん 6,7 章
 6/27(木) ブルーベリー本輪読会 8 章 Promise
+6/29(土) JSPrimer 輪読会（Promise）、鉄則本、自作 npm（リファクタリング）
+7/2(火) ブルーベリー本輪読会（Promise）、Zenn 本イベントループ、自作 npm リファクタリング
