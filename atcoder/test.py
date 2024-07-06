@@ -1,22 +1,13 @@
-import bisect
+n, k = map(int, input().split())
+A = list(map(int, input().split()))
 
-n, t = map(int, input().split())
-S = input()
-X = list(map(int, input().split()))
+A.sort()
+ans = max(A) - min(A)
 
-lefts = []
-for i in range(n):
-    if S[i] == '0':
-        lefts.append(X[i])
-lefts.sort()
-
-ans = 0
-for i in range(n):
-    if S[i] == '1':
-        ans += bisect.bisect_right(lefts, X[i] + 2 * t) - bisect.bisect_right(lefts, X[i])
+for i in range(k + 1):
+    ans = min(ans, A[n-k+i-1] - A[i])
 
 print(ans)
-
 
 
 """
