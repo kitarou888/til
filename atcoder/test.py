@@ -1,14 +1,29 @@
-n, k = map(int, input().split())
+n = int(input())
 A = list(map(int, input().split()))
+B = list(map(int, input().split()))
 
-A.sort()
-ans = max(A) - min(A)
+dp = [0] * (n + 1)
+dp[1] = 0
+dp[2] = A[0]
+for i in range(3, n + 1):
+    dp[i] = min(dp[i-1] + A[i-2], dp[i-2] + B[i-3])
 
-for i in range(k + 1):
-    ans = min(ans, A[n-k+i-1] - A[i])
+min_time = dp[-1]
 
-print(ans)
+routes = []
+now = n
+while True:
+    if now < 1:
+        break
+    routes.append(now)
+    if dp[now] - dp[now-1] == A[now-2]:
+        now -= 1
+    else:
+        now -= 2
 
+routes.sort()
+print(len(routes))
+print(*routes)
 
 """
 ■入出力（AtCoder用）
