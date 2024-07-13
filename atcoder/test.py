@@ -1,29 +1,27 @@
 n = int(input())
-A = list(map(int, input().split()))
-B = list(map(int, input().split()))
+H = list(map(int, input().split()))
 
 dp = [0] * (n + 1)
 dp[1] = 0
-dp[2] = A[0]
+dp[2] = abs(H[1] - H[0])
+
 for i in range(3, n + 1):
-    dp[i] = min(dp[i-1] + A[i-2], dp[i-2] + B[i-3])
-
-min_time = dp[-1]
-
+    dp[i] = min(dp[i-1] + abs(H[i-1] - H[i-2]),
+                dp[i-2] + abs(H[i-1] - H[i-3]))
+place = n
 routes = []
-now = n
-while True:
-    if now < 1:
-        break
-    routes.append(now)
-    if dp[now] - dp[now-1] == A[now-2]:
-        now -= 1
+while place >= 1:
+    routes.append(place)
+    if dp[place] - dp[place-1] == abs(H[place-1] - H[place-2]):
+        place -= 1
     else:
-        now -= 2
+        place -= 2
 
+# print(routes)
 routes.sort()
 print(len(routes))
 print(*routes)
+
 
 """
 ■入出力（AtCoder用）
