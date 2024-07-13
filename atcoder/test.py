@@ -1,26 +1,26 @@
 n = int(input())
-H = list(map(int, input().split()))
+L = []
+R = []
+for _ in range(n):
+    l, r = map(int, input().split())
+    L.append(l)
+    R.append(r)
 
-dp = [0] * (n + 1)
-dp[1] = 0
-dp[2] = abs(H[1] - H[0])
+if sum(L) > 0 or sum(R) < 0:
+    print('No')
+    exit()
+print('Yes')
 
-for i in range(3, n + 1):
-    dp[i] = min(dp[i-1] + abs(H[i-1] - H[i-2]),
-                dp[i-2] + abs(H[i-1] - H[i-3]))
-place = n
-routes = []
-while place >= 1:
-    routes.append(place)
-    if dp[place] - dp[place-1] == abs(H[place-1] - H[place-2]):
-        place -= 1
+ans = []
+life = -sum(L)
+for i in range(n):
+    if life == 0:
+        ans.append(L[i])
     else:
-        place -= 2
+        ans.append(min(R[i], L[i] + life))
+        life -= min(R[i], L[i] + life) - L[i]
 
-# print(routes)
-routes.sort()
-print(len(routes))
-print(*routes)
+print(*ans)
 
 
 """
