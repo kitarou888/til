@@ -1,26 +1,66 @@
+# x1, y1 = map(int, input().split())
+# x2, y2 = map(int, input().split())
+# move = [x2 - x1, y2 - y1]
+
+# ans = 0
+# if move == [0, 0]:
+#     ans = 0
+# elif abs(move[0]) == abs(move[1]):
+#     ans = 1
+# elif abs(move[0]) + abs(move[1]) <= 3:
+#     ans = 1
+# elif sum(move) % 2 == 0:
+#     ans = 2
+# elif abs(abs(move[0]) - abs(move[1])) <= 3:
+#     ans = 2
+# else:
+#     ans = 3
+
+# print(ans)
+
+
 n = int(input())
-L = []
-R = []
-for _ in range(n):
-    l, r = map(int, input().split())
-    L.append(l)
-    R.append(r)
-
-if sum(L) > 0 or sum(R) < 0:
-    print('No')
-    exit()
-print('Yes')
-
-ans = []
-life = -sum(L)
+A = list(map(int, input().split()))
+diff = []
 for i in range(n):
-    if life == 0:
-        ans.append(L[i])
-    else:
-        ans.append(min(R[i], L[i] + life))
-        life -= min(R[i], L[i] + life) - L[i]
+    diff.append(A[i] - (i+1))
+diff.sort()
+plus_count = len([x for x in diff if x > 0])
+minus_count = len([x for x in diff if x < 0])
+ans = sum([abs(i) for i in diff])
 
-print(*ans)
+if n % 2 == 0: # even
+    if plus_count > n // 2:
+        ans = sum([abs(x - diff[n // 2 - 1]) for x in diff])
+    elif minus_count > n // 2:
+        ans = sum([abs(x - diff[n // 2]) for x in diff])
+else: # odd
+    if plus_count > n // 2 or minus_count > n // 2:
+        ans = sum([abs(x - diff[n // 2]) for x in diff])
+
+print(ans)
+
+"""
+2 2 1 2 1   7
+1 1 0 1 0   2
+
+
+1 1 1 1 2 3 4
+0 -1 -2 -3 -3 -3 -3  -15  shou -3 mod 6
+3 2 1 0 0 0 0  各要素から商を引く→各要素に1引いて
+
+2 2 2 1 1   8
+1 1 1 0 0   3
+1 1 0 0 0   2  プラスならnで割ったあまりを求める
+-1 -1 0 0 0  -2  nで割るとあまり3
+-1 -1 -1 0 0  -3  nで割るとあまり2
+-2 -2 -2 -1 -1  -8  nで割るとあまり2
+
+6 4 2 0 -2 -4   6
+5 3 1 -1 -3 -5   0
+4 2 0 -2 -4 -6   -6
+"""
+
 
 
 """
