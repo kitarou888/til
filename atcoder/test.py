@@ -1,65 +1,33 @@
-# x1, y1 = map(int, input().split())
-# x2, y2 = map(int, input().split())
-# move = [x2 - x1, y2 - y1]
-
-# ans = 0
-# if move == [0, 0]:
-#     ans = 0
-# elif abs(move[0]) == abs(move[1]):
-#     ans = 1
-# elif abs(move[0]) + abs(move[1]) <= 3:
-#     ans = 1
-# elif sum(move) % 2 == 0:
-#     ans = 2
-# elif abs(abs(move[0]) - abs(move[1])) <= 3:
-#     ans = 2
-# else:
-#     ans = 3
-
-# print(ans)
-
-
-n = int(input())
+n, s = map(int, input().split())
 A = list(map(int, input().split()))
-diff = []
+
+# 上からもらう
+dp = [[False] * (10009) for i in range(n + 1)]
+dp[0][0] = True
+
+for i in range(1, n+1):
+    for j in range(s+1):
+        if dp[i-1][j] == True:
+            dp[i][j] = True
+        if j - A[i-1] >= 0 and dp[i-1][j-A[i-1]] == True:
+            dp[i][j] = True
+
+print('Yes' if dp[n][s] else 'No')
+
+# 下にくばる
+dp = [[False] * (20009) for i in range(n + 1)]
+dp[0][0] = True
+
 for i in range(n):
-    diff.append(A[i] - (i+1))
-diff.sort()
-plus_count = len([x for x in diff if x > 0])
-minus_count = len([x for x in diff if x < 0])
-ans = sum([abs(i) for i in diff])
+    for j in range(s+1):
+        if dp[i][j] == True:
+            dp[i+1][j] = True
+            dp[i+1][j+A[i]] = True
 
-if n % 2 == 0: # even
-    if plus_count > n // 2:
-        ans = sum([abs(x - diff[n // 2 - 1]) for x in diff])
-    elif minus_count > n // 2:
-        ans = sum([abs(x - diff[n // 2]) for x in diff])
-else: # odd
-    if plus_count > n // 2 or minus_count > n // 2:
-        ans = sum([abs(x - diff[n // 2]) for x in diff])
-
-print(ans)
-
-"""
-2 2 1 2 1   7
-1 1 0 1 0   2
+print('Yes' if dp[n][s] else 'No')
 
 
-1 1 1 1 2 3 4
-0 -1 -2 -3 -3 -3 -3  -15  shou -3 mod 6
-3 2 1 0 0 0 0  各要素から商を引く→各要素に1引いて
 
-2 2 2 1 1   8
-1 1 1 0 0   3
-1 1 0 0 0   2  プラスならnで割ったあまりを求める
--1 -1 0 0 0  -2  nで割るとあまり3
--1 -1 -1 0 0  -3  nで割るとあまり2
--2 -2 -2 -1 -1  -8  nで割るとあまり2
-
-6 4 2 0 -2 -4   6
-5 3 1 -1 -3 -5   0
-4 2 0 -2 -4 -6   -6
-"""
 
 
 
