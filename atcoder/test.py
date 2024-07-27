@@ -1,28 +1,23 @@
-x1, y1 = map(int, input().split())
-x2, y2 = map(int, input().split())
-move = [abs(x2 - x1), abs(y2 - y1)]
+n, w = map(int, input().split())
+W, V = [], []
+for _ in range(n):
+    wi, vi = map(int, input().split())
+    W.append(wi)
+    V.append(vi)
 
-ans = 0
-if move == [0, 0]:
-    ans = 0
-elif move[0] == move[1]:
-    ans = 1
-elif move[0] + move[1] <= 3:
-    ans = 1
-elif sum(move) % 2 == 0:
-    ans = 2
-elif abs(move[0] - move[1]) <= 3:
-    ans = 2
-elif move[0] + move[1] <= 6:
-    ans = 2
-else:
-    ans = 3
+dp = [[-1] * (w + 1) for _ in range(n + 1)]
 
-print(ans)
+dp[0][0] = 0
+# くばる
+for i in range(n):
+    for j in range(w + 1):
+        if dp[i][j] >= 0:
+            dp[i+1][j] = max(dp[i][j], dp[i][j-W[i]] + V[i]) if j - W[i] >= 0 else dp[i][j]
+            if j + W[i] <= w:
+                dp[i+1][j+W[i]] = dp[i][j] + V[i]
 
-
-
-
+# print(dp)
+print(max(dp[n]))
 
 """
 ■入出力（AtCoder用）
