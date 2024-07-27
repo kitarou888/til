@@ -1,23 +1,63 @@
-n, w = map(int, input().split())
-W, V = [], []
-for _ in range(n):
-    wi, vi = map(int, input().split())
-    W.append(wi)
-    V.append(vi)
+n, x, y = map(int, input().split())
+A = list(map(int, input().split()))
+B = list(map(int, input().split()))
 
-dp = [[-1] * (w + 1) for _ in range(n + 1)]
+A = sorted(A)[::-1]
+B = sorted(B)[::-1]
 
-dp[0][0] = 0
-# くばる
+indexA = 0
+cntA = 0
 for i in range(n):
-    for j in range(w + 1):
-        if dp[i][j] >= 0:
-            dp[i+1][j] = max(dp[i][j], dp[i][j-W[i]] + V[i]) if j - W[i] >= 0 else dp[i][j]
-            if j + W[i] <= w:
-                dp[i+1][j+W[i]] = dp[i][j] + V[i]
+    cntA += A[i]
+    if cntA > x:
+        indexA = i
+        break
+    indexA = n - 1
+indexB = 0
+cntB = 0
+for j in range(n):
+    cntB += B[j]
+    if cntB > y:
+        indexB = j
+        break
+    indexB = n - 1
+# print(A,B)
+# print(indexA, indexB)
 
-# print(dp)
-print(max(dp[n]))
+print(min(indexA, indexB) + 1)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# n, w = map(int, input().split())
+# W, V = [], []
+# for _ in range(n):
+#     wi, vi = map(int, input().split())
+#     W.append(wi)
+#     V.append(vi)
+
+# dp = [[w] * (100001) for _ in range(n + 1)]
+
+# dp[0][0] = 0
+# # くばる
+# for i in range(n):
+#     for j in range(100001):
+#         if dp[i][j] >= 0:
+#             dp[i+1][j] = max(dp[i][j], dp[i][j-W[i]] + V[i]) if j - W[i] >= 0 else dp[i][j]
+#             if j + V[i] <= 100000:
+#                 dp[i+1][j+V[i]] = dp[i][j] + W[i]
+
+# # print(dp)
+# print(max(dp[n]))
 
 """
 ■入出力（AtCoder用）
