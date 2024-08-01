@@ -346,3 +346,5 @@
 7/29(月) React を学ぶ(エフェクト)
 7/30(火) React を学ぶ(useRef)、ブルーベリー本輪読会(コンパイラオプション)
 7/31(水) React を学ぶ(useRef)、Rails チュートリアル輪読会(ユーザー登録)
+8/1(木) React を学ぶ(useRef、useEffect)
+8/2(金) React を学ぶ(useEffect)
