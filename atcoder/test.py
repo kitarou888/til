@@ -1,30 +1,23 @@
-n, w = map(int, input().split())
-W, V = [], []
-for _ in range(n):
-    wi, vi = map(int, input().split())
-    W.append(wi)
-    V.append(vi)
+S = input()
+n = len(S) - 1
 
-dp = [[10**15] * (100001) for _ in range(n + 1)]
-dp[0][0] = 0
-# くばる
-for i in range(n):
-    for j in range(100001):
-        if dp[i][j] != w:
-            if j - V[i] >= 0:
-                dp[i+1][j] = min(dp[i][j], dp[i][j-V[i]] + W[i])
-            else:
-                dp[i+1][j] = dp[i][j]
-
-            if j + V[i] <= 100000:
-                dp[i+1][j+V[i]] = dp[i][j] + W[i]
-    # print(i,dp[i+1][:10])
-
-# print(dp)
 ans = 0
-for i in range(len(dp[n])):
-    if dp[n][i] <= w:
-        ans = i
+for i in range(2**n):
+    sum = 0
+    s = S
+    cnt = 0
+    for j in range(n):
+        # print(i, j, cnt, sum, s)
+        if i & 1 << j == 0:
+            cnt += 1
+        else:
+            sum += int(s[:cnt+1])
+            s = s[cnt+1:]
+            cnt = 0
+        # print(i, j, cnt, sum, s)
+    sum += int(s)
+    ans += sum
+    # print(ans)
 print(ans)
 
 
