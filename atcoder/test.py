@@ -1,25 +1,26 @@
-S = input()
-n = len(S) - 1
+from bisect import bisect_right
+N, M = map(int, input().split())
+A = list(map(int, input().split()))
+A.sort()
 
 ans = 0
-for i in range(2**n):
-    sum = 0
-    s = S
-    cnt = 0
-    for j in range(n):
-        # print(i, j, cnt, sum, s)
-        if i & 1 << j == 0:
-            cnt += 1
-        else:
-            sum += int(s[:cnt+1])
-            s = s[cnt+1:]
-            cnt = 0
-        # print(i, j, cnt, sum, s)
-    sum += int(s)
-    ans += sum
-    # print(ans)
-print(ans)
+while True:
+    index = bisect_right(A, M // N)
+    # print('N M A index')
+    # print(N,M,A,index)
 
+    if index == 0:
+        ans = M // N
+        break
+    elif index == N:
+        ans = 'infinite'
+        break
+    else:
+        M -= sum(A[:index])
+        N -= index
+        A = A[index:]
+        # print(m,n,ans)
+print(ans)
 
 
 """
