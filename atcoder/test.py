@@ -1,26 +1,16 @@
-N, M = map(int, input().split())
-A = list(map(int, input().split()))
+N = int(input())
+H = list(map(int, input().split()))
 
-if sum(A) <= M:
-    print('infinite')
-    exit()
+dp = [None] * (N + 1)
+dp[0] = 0
+dp[1] = 0
+dp[2] = abs(H[1] - H[0])
 
-def cond(x):
-    s = sum(min(x, a) for a in A)
-    return s <= M
+for i in range(3, N+1):
+    dp[i] = min(dp[i-1] + abs(H[i-1] - H[i-2]),
+                dp[i-2] + abs(H[i-1] - H[i-3]))
 
-ok, ng = 0, max(A)
-while ok + 1 < ng:
-    print(ok, ng)
-    mi = (ok + ng) // 2 # miはひとり当たりのmax予算
-    if sum([min(mi, a) for a in A]) <= M:
-    # if cond(mi):
-        ok = mi
-    else:
-        ng = mi
-
-    print(ok, ng, mi)
-print(ok)
+print(dp[N])
 
 """
 ■入出力（AtCoder用）
