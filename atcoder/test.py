@@ -1,27 +1,26 @@
-from bisect import bisect_right
 N, M = map(int, input().split())
 A = list(map(int, input().split()))
-A.sort()
 
-ans = 0
-while True:
-    index = bisect_right(A, M // N)
-    # print('N M A index')
-    # print(N,M,A,index)
+if sum(A) <= M:
+    print('infinite')
+    exit()
 
-    if index == 0:
-        ans = M // N
-        break
-    elif index == N:
-        ans = 'infinite'
-        break
+def cond(x):
+    s = sum(min(x, a) for a in A)
+    return s <= M
+
+ok, ng = 0, max(A)
+while ok + 1 < ng:
+    print(ok, ng)
+    mi = (ok + ng) // 2 # miはひとり当たりのmax予算
+    if sum([min(mi, a) for a in A]) <= M:
+    # if cond(mi):
+        ok = mi
     else:
-        M -= sum(A[:index])
-        N -= index
-        A = A[index:]
-        # print(m,n,ans)
-print(ans)
+        ng = mi
 
+    print(ok, ng, mi)
+print(ok)
 
 """
 ■入出力（AtCoder用）
