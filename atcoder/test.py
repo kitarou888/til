@@ -1,16 +1,21 @@
-N, K = map(int, input().split())
-H = list(map(int, input().split()))
+N = int(input())
+ABC = [list(map(int, input().split())) for i in range(N)]
 
-dp = [10**10] * (N + 1 + K)
-dp[0] = 0
-dp[1] = 0
+dp = [[0] * 3 for i in range(N)]
+dp[0][0] = ABC[0][0]
+dp[0][1] = ABC[0][1]
+dp[0][2] = ABC[0][2]
 
-for i in range(1, N+1):
-    for j in range(1, K+1):
-        if i - 1 < N and i - 1 + j < N:
-            dp[i+j] = min(dp[i] + abs(H[i-1] - H[i-1+j]), dp[i+j])
-        # print(i,j,dp)
-print(dp[N])
+for i in range(1, N):
+    dp[i][0] = max(dp[i-1][1], dp[i-1][2]) + ABC[i][0]
+    dp[i][1] = max(dp[i-1][2], dp[i-1][0]) + ABC[i][1]
+    dp[i][2] = max(dp[i-1][0], dp[i-1][1]) + ABC[i][2]
+
+
+print(max(dp[-1]))
+
+
+
 
 """
 ■入出力（AtCoder用）
