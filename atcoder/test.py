@@ -1,15 +1,15 @@
-N = int(input())
+N, K = map(int, input().split())
 H = list(map(int, input().split()))
 
-dp = [None] * (N + 1)
+dp = [10**10] * (N + 1 + K)
 dp[0] = 0
 dp[1] = 0
-dp[2] = abs(H[1] - H[0])
 
-for i in range(3, N+1):
-    dp[i] = min(dp[i-1] + abs(H[i-1] - H[i-2]),
-                dp[i-2] + abs(H[i-1] - H[i-3]))
-
+for i in range(1, N+1):
+    for j in range(1, K+1):
+        if i - 1 < N and i - 1 + j < N:
+            dp[i+j] = min(dp[i] + abs(H[i-1] - H[i-1+j]), dp[i+j])
+        # print(i,j,dp)
 print(dp[N])
 
 """
