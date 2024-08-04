@@ -1,21 +1,20 @@
 N = int(input())
-ABC = [list(map(int, input().split())) for i in range(N)]
+S = input()
+INF = 10**9
 
 dp = [[0] * 3 for i in range(N)]
-dp[0][0] = ABC[0][0]
-dp[0][1] = ABC[0][1]
-dp[0][2] = ABC[0][2]
+dp[0][0] = 1 if S[0] == 'S' else 0 if S[0] == 'R' else -INF
+dp[0][1] = 1 if S[0] == 'P' else 0 if S[0] == 'S' else -INF
+dp[0][2] = 1 if S[0] == 'R' else 0 if S[0] == 'P' else -INF
 
 for i in range(1, N):
-    dp[i][0] = max(dp[i-1][1], dp[i-1][2]) + ABC[i][0]
-    dp[i][1] = max(dp[i-1][2], dp[i-1][0]) + ABC[i][1]
-    dp[i][2] = max(dp[i-1][0], dp[i-1][1]) + ABC[i][2]
+    dp[i][0] = max(dp[i-1][1], dp[i-1][2]) + 1 if S[i] == 'S' else max(dp[i-1][1], dp[i-1][2]) if S[i] == 'R' else -INF
+    dp[i][1] = max(dp[i-1][2], dp[i-1][0]) + 1 if S[i] == 'P' else max(dp[i-1][2], dp[i-1][0]) if S[i] == 'S' else -INF
+    dp[i][2] = max(dp[i-1][0], dp[i-1][1]) + 1 if S[i] == 'R' else max(dp[i-1][0], dp[i-1][1]) if S[i] == 'P' else -INF
+    print(dp)
 
 
 print(max(dp[-1]))
-
-
-
 
 """
 ■入出力（AtCoder用）
