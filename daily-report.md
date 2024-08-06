@@ -349,3 +349,4 @@
 8/1(木) React を学ぶ(useRef、useEffect)
 8/2(金) React を学ぶ(useEffect)
 8/6(火) React を学ぶ(useEffect)、マスタリング TCP/IP 輪読会初回
+8/7(水) React を学ぶ(useEffect)、Rails チュートリアル輪読会(ユーザテーブル)
