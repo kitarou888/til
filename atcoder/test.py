@@ -1,39 +1,22 @@
-n = int(input())
-P, A = [], []
-for i in range(n):
-    p, a = map(int, input().split())
-    P.append(p)
-    A.append(a)
+Q = int(input())
+C = {}
+for _ in range(Q):
+    q = input()
+    if q[0] == '1':
+        i, j = map(int, q.split())
+        if j in C:
+            C[j] += 1
+        else:
+            C[j] = 1
+    elif q[0] == '2':
+        i, j = map(int, q.split())
+        C[j] -= 1
+        if C[j] == 0:
+            C.pop(j)
+    else:
+        print(len(C))
 
-dp = [[0] * (n + 1) for _ in range(n + 1)]
 
-# もらうDP
-for l in range(1, n+1):
-    for r in range(n, 0, -1):
-        if l > r:
-            break
-
-        # 右を削除
-        score1 = 0 if r == n else dp[l][r+1] + A[r] if P[r] >= l and P[r] <= r else dp[l][r+1]
-        # 左を削除
-        score2 = 0 if l == 1 else dp[l-1][r] + A[l-2] if P[l-2] >= l and P[l-2] <= r else dp[l-1][r]
-
-        dp[l][r] = max(score1, score2)
-
-print(max([dp[i][i] for i in range(1, n+1)]))
-
-# くばるDP
-for l in range(1, n+1):
-    for r in range(n, 0, -1):
-        if l == r:
-            break
-
-        # 右を削除 ※左に配るときは大小比較
-        dp[l][r-1] = max(dp[l][r-1], dp[l][r] + A[r-1] if l <= P[r-1] and P[r-1] <= r else dp[l][r])
-        # 左を削除 ※下には普通に配れる
-        dp[l+1][r] = dp[l][r] + A[l-1] if l <= P[l-1] and P[l-1] <= r else dp[l][r]
-
-print(max([dp[i][i] for i in range(1, n+1)]))
 
 """
 ■入出力（AtCoder用）
