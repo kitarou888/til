@@ -19,7 +19,19 @@ for l in range(1, n+1):
         score2 = 0 if l == 1 else dp[l-1][r] + A[l-2] if P[l-2] >= l and P[l-2] <= r else dp[l-1][r]
 
         dp[l][r] = max(score1, score2)
-        # print(dp)
+
+print(max([dp[i][i] for i in range(1, n+1)]))
+
+# くばるDP
+for l in range(1, n+1):
+    for r in range(n, 0, -1):
+        if l == r:
+            break
+
+        # 右を削除 ※左に配るときは大小比較
+        dp[l][r-1] = max(dp[l][r-1], dp[l][r] + A[r-1] if l <= P[r-1] and P[r-1] <= r else dp[l][r])
+        # 左を削除 ※下には普通に配れる
+        dp[l+1][r] = dp[l][r] + A[l-1] if l <= P[l-1] and P[l-1] <= r else dp[l][r]
 
 print(max([dp[i][i] for i in range(1, n+1)]))
 
