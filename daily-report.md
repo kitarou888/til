@@ -351,3 +351,4 @@
 8/6(火) React を学ぶ(useEffect)、マスタリング TCP/IP 輪読会初回
 8/7(水) React を学ぶ(useEffect)、Python(FastAPI)、Udemy(OpenCV)
 8/9(金) React を学ぶ(useEffect)
+8/11(日) React を学ぶ(カスタムフック)、コードコンプリート上輪読会、二次元累積和
