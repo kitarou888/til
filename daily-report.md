@@ -352,3 +352,5 @@
 8/7(水) React を学ぶ(useEffect)、Python(FastAPI)、Udemy(OpenCV)
 8/9(金) React を学ぶ(useEffect)
 8/11(日) React を学ぶ(カスタムフック)、コードコンプリート上輪読会、二次元累積和
+8/13(火) SWR ドキュメント、ブルーベリー本読み返し
+8/17(土) SoftwareDesign8 月号 LLM2 章、ABC367、ブルーベリー本 3 章
